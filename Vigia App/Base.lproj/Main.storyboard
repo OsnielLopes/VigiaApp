@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4jE-Lq-GvR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4jE-Lq-GvR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -218,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="1822" y="-786"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu Gestor View Controller-->
         <scene sceneID="lYh-pZ-BtZ">
             <objects>
-                <viewController restorationIdentifier="menuGestor" storyboardIdentifier="menuGestor" id="MA8-Ix-4N9" sceneMemberID="viewController">
+                <viewController restorationIdentifier="menuGestor" storyboardIdentifier="menuGestor" id="MA8-Ix-4N9" customClass="MenuGestorViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cTZ-Sj-yd2">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

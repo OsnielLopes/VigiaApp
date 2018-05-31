@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum NivelAcesso: String {
+    case morador = "Morador"
+    case gestor = "Gestor"
+    case visitante = "Visitante"
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - IBOutlets
@@ -72,10 +78,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.present(alert, animated: true)
                     return
                 }
-                self.performSegue(withIdentifier: "toHome", sender: nil)
+                DataBase.CredencialManager.credencial = credencial
+                self.performSegue(withIdentifier: "toHome", sender: credencial?.nivelAcesso)
             }
         }
     }
+    
     
     
     /*
