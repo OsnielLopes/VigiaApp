@@ -24,6 +24,8 @@ class DataBase {
             }
         }
         
+        static var credencial: Credencial?
+        
         static func get(usuario: String, senha: String, completion: @escaping (_ credencial: Credencial?)->Void) {
             let url = URL(string: "http://vigiaweb.com/API/credenciais/read.php?usuario=\(usuario)&senha=\(senha)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in

@@ -218,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="1822" y="-786"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu Gestor View Controller-->
         <scene sceneID="lYh-pZ-BtZ">
             <objects>
-                <viewController restorationIdentifier="menuGestor" storyboardIdentifier="menuGestor" id="MA8-Ix-4N9" sceneMemberID="viewController">
+                <viewController restorationIdentifier="menuGestor" storyboardIdentifier="menuGestor" id="MA8-Ix-4N9" customClass="MenuGestorViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cTZ-Sj-yd2">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum NivelAcesso: String {
+    case morador = "Morador"
+    case gestor = "Gestor"
+    case visitante = "Visitante"
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - IBOutlets
@@ -92,6 +98,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
     
     
     /*

@@ -41,6 +41,7 @@
 		49EC456E2099FE570071B045 /* CondominiosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC456D2099FE570071B045 /* CondominiosTableViewController.swift */; };
 		49EC45712099FE7F0071B045 /* PortaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC45702099FE7F0071B045 /* PortaoTableViewCell.swift */; };
 		49EC45732099FF420071B045 /* PortoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC45722099FF420071B045 /* PortoesTableViewController.swift */; };
+		6524480120C06AAA00CAE691 /* MenuGestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524480020C06AAA00CAE691 /* MenuGestorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		49EC456D2099FE570071B045 /* CondominiosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondominiosTableViewController.swift; sourceTree = "<group>"; };
 		49EC45702099FE7F0071B045 /* PortaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortaoTableViewCell.swift; sourceTree = "<group>"; };
 		49EC45722099FF420071B045 /* PortoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortoesTableViewController.swift; sourceTree = "<group>"; };
+		6524480020C06AAA00CAE691 /* MenuGestorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuGestorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				49EC456B2099FA2E0071B045 /* MenuMoradorViewController.swift */,
 				49EC45692099F96D0071B045 /* MenuVisitanteViewController.swift */,
 				49BE63B0209540CE00B99686 /* HomeViewController.swift */,
+				6524480020C06AAA00CAE691 /* MenuGestorViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				49EC455F2097AF410071B045 /* HeaderEventoTableViewCell.swift in Sources */,
 				49BE63A22092C77800B99686 /* DataBase.swift in Sources */,
 				495D8B17209751B200C4EF6F /* PickerHoraTableViewCell.swift in Sources */,
+				6524480120C06AAA00CAE691 /* MenuGestorViewController.swift in Sources */,
 				499501A2209685ED00F7A975 /* ContatoViewController.swift in Sources */,
 				49EC45732099FF420071B045 /* PortoesTableViewController.swift in Sources */,
 				4995019B209561C200F7A975 /* Entities.swift in Sources */,
