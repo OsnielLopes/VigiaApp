@@ -8,15 +8,10 @@
 
 import UIKit
 
-protocol NovaPermissaoDelegate {
-    func didSave()
-}
-
 class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelegate {
     
     //MARK: - Variables
     var permissao: Permissao!
-    var delegate: NovaPermissaoDelegate!
     
     //MARK: - IBOutlets
     @IBOutlet weak var nomeTextField: UITextField!
@@ -55,6 +50,7 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         guard let permissao = self.permissao else {
             return
         }
@@ -77,8 +73,8 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
         dataEntradaCell.detailTextLabel?.text = dateFormatter.string(from: permissao.inicioLiberacao)
         dataSaidaCell.detailTextLabel?.text = dateFormatter.string(from: permissao.fimLiberacao)
         
-        horaEntradaCell.detailTextLabel?.text = permissao.horaFim
-        horaSaidaCell.detailTextLabel?.text = permissao.horaInicio
+        horaEntradaCell.detailTextLabel?.text = permissao.horaInicio
+        horaSaidaCell.detailTextLabel?.text = permissao.horaFim
         
         for i in 0..<permissao.diasLiberacao.count {
             if permissao.diasLiberacao[i] == "1" {
@@ -90,11 +86,6 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
             }
             
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        guard let permissao = permissao else { return }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -254,6 +245,16 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
         
         print("salvar tapped")
         
+        let alert = UIAlertController(title: nil, message: "Salvando...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
         guard let nome = self.nomeTextField.text else {
             return
         }
@@ -277,39 +278,61 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         
-        DataBase.MoradorManager.getUnidade(for: UserDefaults().integer(forKey: "user_id"), completion: { id in
+        DataBase.MoradorManager.getUnidade(for: UserDefaults().integer(forKey: "user_credencial_id"), completion: { id in
             
-            print("DID GET THE USER ID")
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            
-            let date = dateFormatter.date(from: (self.dataEntradaCell.detailTextLabel?.text!)!)
-            let inicioLiberacao = formatter.string(from: date!)
-            
-            let date2 = dateFormatter.date(from: (self.dataSaidaCell.detailTextLabel?.text!)!)
-            let fimLiberacao = formatter.string(from: date2!)
-            
-            let json: [String: Any] = ["nome": nome,
-                                       "rg": rg,
-                                       "inicioliberacao": "\(inicioLiberacao) 10:00:00",
-                "fimliberacao": "\(fimLiberacao) 10:00:00",
-                "diasliberacao": self.getDiasLiberacao(),
-                "horainicio": "\(horarioInicio):00",
-                "horafim":"\(horarioFim):00",
-                "unidades_id": id,
-                "bases_id": String(UserDefaults().integer(forKey: "user_bases_id")),
-                "salvopor": UserDefaults().integer(forKey: "user_id")
-            ]
-            DataBase.PermissaoManager.create(json: json, completion: { (didSave) in
-                print("DID GET THE SAVE OR NOT RESPONSE")
-                print(didSave)
-            })
+            if id != nil {
+                
+                print("DID GET THE USER ID")
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                
+                let date = dateFormatter.date(from: (self.dataEntradaCell.detailTextLabel?.text!)!)
+                let inicioLiberacao = formatter.string(from: date!)
+                
+                let date2 = dateFormatter.date(from: (self.dataSaidaCell.detailTextLabel?.text!)!)
+                let fimLiberacao = formatter.string(from: date2!)
+                
+                let json: [String: Any] = ["nome": nome,
+                                           "rg": rg,
+                                           "inicioliberacao": "\(inicioLiberacao) 10:00:00",
+                    "fimliberacao": "\(fimLiberacao) 10:00:00",
+                    "diasliberacao": self.getDiasLiberacao(),
+                    "horainicio": "\(horarioInicio):00",
+                    "horafim":"\(horarioFim):00",
+                    "unidades_id": id!,
+                    "bases_id": String(UserDefaults().integer(forKey: "user_bases_id")),
+                    "salvopor": UserDefaults().integer(forKey: "user_credencial_id")
+                ]
+                DataBase.PermissaoManager.create(json: json, completion: { (didSave) in
+                    DispatchQueue.main.async {
+                        alert.dismiss(animated: true, completion: {
+                            if didSave {
+                                self.dismiss(animated: true, completion: nil)
+                            } else {
+                                let alert = UIAlertController(title: "Atenção", message: "Não foi possível salvar essa permissão.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true)
+                            }
+                        })
+                    }
+                    
+                })
+            } else {
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true, completion: {
+                        let alert = UIAlertController(title: "Atenção", message: "Não foi possível salvar essa permissão.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    })
+                    
+                }
+            }
         })
-        self.dismiss(animated: true, completion: nil)
+        
         
     }
     
@@ -340,15 +363,15 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
     
     @IBAction func entradaHourPickerDidChange(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
+        formatter.dateFormat = "HH:mm"
         horaEntradaCell.detailTextLabel?.text = formatter.string(from: sender.date)
     }
     
     @IBAction func saidaHourPickerDidChange(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
+        formatter.dateFormat = "HH:mm"
+        //        formatter.dateStyle = .none
+        //        formatter.timeStyle = .short
         horaSaidaCell.detailTextLabel?.text = formatter.string(from: sender.date)
     }
     
@@ -365,20 +388,20 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
     //MARK: - Auxiliar Functions
     func getDiasLiberacao()->String{
         
-            guard let indexPaths = self.tableView.indexPathsForSelectedRows else {
-                return("0000000")
-                
-            }
-            var dias = ""
-            for cell in 0..<7{
-                if indexPaths.contains(IndexPath(row: cell, section: 2)){
-                    dias += "1"
-                } else {
-                    dias += "0"
-                }
-            }
+        guard let indexPaths = self.tableView.indexPathsForSelectedRows else {
+            return("0000000")
             
-            return(dias)
+        }
+        var dias = ""
+        for cell in 0..<7{
+            if indexPaths.contains(IndexPath(row: cell, section: 2)){
+                dias += "1"
+            } else {
+                dias += "0"
+            }
+        }
+        
+        return(dias)
         
     }
     

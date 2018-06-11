@@ -18,7 +18,7 @@ class SettingsBundleHelper {
         if UserDefaults.standard.bool(forKey: SettingsBundleKeys.finalizarSessao) {
             UserDefaults.standard.set(false, forKey: SettingsBundleKeys.finalizarSessao)
             
-            UserDefaults.standard.set(0, forKey: "user_id")
+            UserDefaults.standard.set(0, forKey: "user_credencial_id")
         }
     }
 }

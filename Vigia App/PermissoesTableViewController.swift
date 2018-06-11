@@ -13,7 +13,8 @@ class PermissoesTableViewController: UITableViewController {
     var permissoes = [Permissao]()
     
     override func viewWillAppear(_ animated: Bool) {
-        let userId = UserDefaults.standard.integer(forKey: "user_id")
+        print("view will appear")
+        let userId = UserDefaults.standard.integer(forKey: "user_credencial_id")
         DataBase.PermissaoManager.get(usuarioId: userId) { (p) in
             self.permissoes = p
             DispatchQueue.main.async {
@@ -46,23 +47,52 @@ class PermissoesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return permissoes.count
+        return permissoes.count + 1
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.row == 0 ? 281 : 80
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "permissao", for: indexPath)
+        if indexPath.row == 0 {
+            let bannerCell = tableView.dequeueReusableCell(withIdentifier: "banner")
+            return bannerCell!
+        }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "permissao", for: indexPath) as? PermissaoTableViewCell else {
+            fatalError("Incapable of dequeueing a UITableViewCell to PermissaoTableViewCell")
+        }
 
-        if let id = permissoes[indexPath.row].pessoasId {
+        if let id = permissoes[indexPath.row-1].pessoasId {
+            //TODO: Criar uma única requisição que retorne nome e rg
             DataBase.PessoaManager.getNome(pessoaId: id) { (nome) in
                 if let n = nome {
                     DispatchQueue.main.async {
-                        cell.textLabel?.text = n
+                        cell.nome.text = n
                     }
                 }
             }
+            DataBase.PessoaManager.getRG(pessoaId: id) { (rg) in
+                if let rg = rg {
+                    DispatchQueue.main.async {
+                        cell.rg.text = rg
+                    }
+                }
+            }
+        } else {
+            fatalError("Impossible to get the id for the \(indexPath.row-1)th permission")
         }
+        
+        guard let inicioLiberacao = permissoes[indexPath.row-1].inicioLiberacao, let fimLiberacao = permissoes[indexPath.row-1].fimLiberacao else {
+            fatalError("Impossible to get the initial or final date for the \(indexPath.row-1)th permission")
+
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM"
+        cell.periodo.text = " \(dateFormatter.string(from: inicioLiberacao)) a \(dateFormatter.string(from: fimLiberacao))"
     
         return cell
     }
@@ -74,11 +104,11 @@ class PermissoesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //TODO: - Como desativar uma permissao?
-            let userId = UserDefaults.standard.integer(forKey: "user_id")
+            let userId = UserDefaults.standard.integer(forKey: "user_pessoas_id")
             
-            DataBase.PermissaoManager.mudarStatus(pessoasId: permissoes[indexPath.row].pessoasId, salvopor: userId) { (completed) in
+            DataBase.PermissaoManager.mudarStatus(pessoasId: permissoes[indexPath.row-1].pessoasId, salvopor: userId) { (completed) in
                 if completed {
-                    self.permissoes.remove(at: indexPath.row)
+                    self.permissoes.remove(at: indexPath.row-1)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     
                 }
@@ -110,7 +140,7 @@ class PermissoesTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if let permissaoViewController = segue.destination as? PermissaoViewController {
-            permissaoViewController.permissao = permissoes[(tableView.indexPathForSelectedRow?.row)!]
+            permissaoViewController.permissao = permissoes[((tableView.indexPathForSelectedRow?.row)!-1)]
         }
         
     }

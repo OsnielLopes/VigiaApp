@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		49060AC320CC86E50059300A /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 49060AC220CC86E50059300A /* Assets.xcassets */; };
+		4919CCC120C9A9B4003FC461 /* HistoricoDeAcionamentoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4919CCC020C9A9B4003FC461 /* HistoricoDeAcionamentoTableViewController.swift */; };
+		4919CCC420C9C0A1003FC461 /* PermissaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4919CCC320C9C0A1003FC461 /* PermissaoTableViewCell.swift */; };
+		4920B352209157960028CECC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920B351209157960028CECC /* AppDelegate.swift */; };
+		4920B357209157960028CECC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4920B355209157960028CECC /* Main.storyboard */; };
+		4920B35C2091579B0028CECC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4920B35A2091579B0028CECC /* LaunchScreen.storyboard */; };
+		4920B3672091579B0028CECC /* Vigia_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920B3662091579B0028CECC /* Vigia_AppTests.swift */; };
+		495A8B1E20A8ABB100BA9E28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A8B1D20A8ABB100BA9E28 /* Extensions.swift */; };
+		495D8B132097503600C4EF6F /* NomeDoEventoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D8B122097503600C4EF6F /* NomeDoEventoTableViewCell.swift */; };
+		495D8B152097511F00C4EF6F /* PickerDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D8B142097511F00C4EF6F /* PickerDataTableViewCell.swift */; };
+		495D8B17209751B200C4EF6F /* PickerHoraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D8B16209751B200C4EF6F /* PickerHoraTableViewCell.swift */; };
+		495D8B1920976CD000C4EF6F /* ConvidadoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D8B1820976CD000C4EF6F /* ConvidadoTableViewCell.swift */; };
+		495D8B1B20976CE500C4EF6F /* AdicionarConvidadoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D8B1A20976CE500C4EF6F /* AdicionarConvidadoTableViewCell.swift */; };
+		495D8B1D20979F5400C4EF6F /* EventoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D8B1C20979F5400C4EF6F /* EventoTableViewController.swift */; };
+		4961B5AF2095530B000509A9 /* ListaDeFestaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961B5AE2095530A000509A9 /* ListaDeFestaTableViewController.swift */; };
+		4961B5B320955C0F000509A9 /* EditarEventoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961B5B220955C0F000509A9 /* EditarEventoTableViewController.swift */; };
+		4961B5B520955E5D000509A9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961B5B420955E5D000509A9 /* LoginViewController.swift */; };
+		4995019B209561C200F7A975 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995019A209561C200F7A975 /* Entities.swift */; };
+		4995019E20960C5B00F7A975 /* NovaPermissaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995019D20960C5B00F7A975 /* NovaPermissaoTableViewController.swift */; };
+		499501A2209685ED00F7A975 /* ContatoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499501A1209685ED00F7A975 /* ContatoViewController.swift */; };
+		49BE63A22092C77800B99686 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BE63A12092C77800B99686 /* DataBase.swift */; };
+		49BE63B1209540CE00B99686 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BE63B0209540CE00B99686 /* HomeViewController.swift */; };
+		49D4C425209F3ACD0065993D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 49D4C424209F3ACD0065993D /* Settings.bundle */; };
+		49D4C427209F3B9D0065993D /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4C426209F3B9D0065993D /* SettingsBundleHelper.swift */; };
+		49EC455B2097AE480071B045 /* ListaDeFestaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC455A2097AE480071B045 /* ListaDeFestaTableViewCell.swift */; };
+		49EC455D2097AF2A0071B045 /* ConvidadoEventoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC455C2097AF2A0071B045 /* ConvidadoEventoTableViewCell.swift */; };
+		49EC455F2097AF410071B045 /* HeaderEventoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC455E2097AF410071B045 /* HeaderEventoTableViewCell.swift */; };
+		49EC4566209896C30071B045 /* PermissoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC4565209896C30071B045 /* PermissoesTableViewController.swift */; };
+		49EC45682098978B0071B045 /* PermissaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC45672098978B0071B045 /* PermissaoViewController.swift */; };
+		49EC456A2099F96D0071B045 /* MenuVisitanteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC45692099F96D0071B045 /* MenuVisitanteViewController.swift */; };
+		49EC456C2099FA2E0071B045 /* MenuMoradorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC456B2099FA2E0071B045 /* MenuMoradorViewController.swift */; };
+		49EC456E2099FE570071B045 /* CondominiosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC456D2099FE570071B045 /* CondominiosTableViewController.swift */; };
+		49EC45712099FE7F0071B045 /* PortaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC45702099FE7F0071B045 /* PortaoTableViewCell.swift */; };
+		49EC45732099FF420071B045 /* PortoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC45722099FF420071B045 /* PortoesTableViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4920B3632091579B0028CECC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4920B346209157960028CECC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4920B34D209157960028CECC;
+			remoteInfo = "Vigia App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		49060AC220CC86E50059300A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4919CCC020C9A9B4003FC461 /* HistoricoDeAcionamentoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoricoDeAcionamentoTableViewController.swift; path = HistoricoDeAcionamento/HistoricoDeAcionamentoTableViewController.swift; sourceTree = "<group>"; };
+		4919CCC320C9C0A1003FC461 /* PermissaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissaoTableViewCell.swift; sourceTree = "<group>"; };
+		4920B34E209157960028CECC /* V8 Monitoramento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "V8 Monitoramento.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4920B351209157960028CECC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4920B356209157960028CECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4920B35B2091579B0028CECC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4920B35D2091579B0028CECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4920B3622091579B0028CECC /* V8 MonitoramentoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "V8 MonitoramentoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4920B3662091579B0028CECC /* Vigia_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vigia_AppTests.swift; sourceTree = "<group>"; };
+		4920B3682091579B0028CECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495A8B1D20A8ABB100BA9E28 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		495D8B122097503600C4EF6F /* NomeDoEventoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomeDoEventoTableViewCell.swift; sourceTree = "<group>"; };
+		495D8B142097511F00C4EF6F /* PickerDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerDataTableViewCell.swift; sourceTree = "<group>"; };
+		495D8B16209751B200C4EF6F /* PickerHoraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerHoraTableViewCell.swift; sourceTree = "<group>"; };
+		495D8B1820976CD000C4EF6F /* ConvidadoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvidadoTableViewCell.swift; sourceTree = "<group>"; };
+		495D8B1A20976CE500C4EF6F /* AdicionarConvidadoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdicionarConvidadoTableViewCell.swift; sourceTree = "<group>"; };
+		495D8B1C20979F5400C4EF6F /* EventoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoTableViewController.swift; sourceTree = "<group>"; };
+		4961B5AE2095530A000509A9 /* ListaDeFestaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaDeFestaTableViewController.swift; sourceTree = "<group>"; };
+		4961B5B220955C0F000509A9 /* EditarEventoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarEventoTableViewController.swift; sourceTree = "<group>"; };
+		4961B5B420955E5D000509A9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4995019A209561C200F7A975 /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		4995019D20960C5B00F7A975 /* NovaPermissaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaPermissaoTableViewController.swift; sourceTree = "<group>"; };
+		499501A1209685ED00F7A975 /* ContatoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoViewController.swift; sourceTree = "<group>"; };
+		49BE63A12092C77800B99686 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		49BE63B0209540CE00B99686 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		49D4C424209F3ACD0065993D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		49D4C426209F3B9D0065993D /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
+		49EC455A2097AE480071B045 /* ListaDeFestaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaDeFestaTableViewCell.swift; sourceTree = "<group>"; };
+		49EC455C2097AF2A0071B045 /* ConvidadoEventoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvidadoEventoTableViewCell.swift; sourceTree = "<group>"; };
+		49EC455E2097AF410071B045 /* HeaderEventoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEventoTableViewCell.swift; sourceTree = "<group>"; };
+		49EC4565209896C30071B045 /* PermissoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissoesTableViewController.swift; sourceTree = "<group>"; };
+		49EC45672098978B0071B045 /* PermissaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissaoViewController.swift; sourceTree = "<group>"; };
+		49EC45692099F96D0071B045 /* MenuVisitanteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVisitanteViewController.swift; sourceTree = "<group>"; };
+		49EC456B2099FA2E0071B045 /* MenuMoradorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuMoradorViewController.swift; sourceTree = "<group>"; };
+		49EC456D2099FE570071B045 /* CondominiosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondominiosTableViewController.swift; sourceTree = "<group>"; };
+		49EC45702099FE7F0071B045 /* PortaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortaoTableViewCell.swift; sourceTree = "<group>"; };
+		49EC45722099FF420071B045 /* PortoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortoesTableViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4920B34B209157960028CECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4920B35F2091579B0028CECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4918BC452095529500CB8257 /* Lista de Festa */ = {
+			isa = PBXGroup;
+			children = (
+				49EC45612097AFFE0071B045 /* EventoTableViewController */,
+				49EC45602097AFB60071B045 /* ListaDeFestaViewController */,
+				49EC45622097B0300071B045 /* EditarEventoViewController */,
+			);
+			name = "Lista de Festa";
+			sourceTree = "<group>";
+		};
+		4919CCC220C9A9E1003FC461 /* HistoricoDeAcionamento */ = {
+			isa = PBXGroup;
+			children = (
+				4919CCC020C9A9B4003FC461 /* HistoricoDeAcionamentoTableViewController.swift */,
+			);
+			name = HistoricoDeAcionamento;
+			sourceTree = "<group>";
+		};
+		4920B345209157960028CECC = {
+			isa = PBXGroup;
+			children = (
+				4920B350209157960028CECC /* Vigia App */,
+				4920B3652091579B0028CECC /* Vigia AppTests */,
+				4920B34F209157960028CECC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4920B34F209157960028CECC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4920B34E209157960028CECC /* V8 Monitoramento.app */,
+				4920B3622091579B0028CECC /* V8 MonitoramentoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4920B350209157960028CECC /* Vigia App */ = {
+			isa = PBXGroup;
+			children = (
+				499501982095619F00F7A975 /* ViewControllers */,
+				49950199209561B200F7A975 /* Model */,
+				49060AC220CC86E50059300A /* Assets.xcassets */,
+				4920B351209157960028CECC /* AppDelegate.swift */,
+				495A8B1D20A8ABB100BA9E28 /* Extensions.swift */,
+				4920B355209157960028CECC /* Main.storyboard */,
+				4920B35A2091579B0028CECC /* LaunchScreen.storyboard */,
+				49D4C426209F3B9D0065993D /* SettingsBundleHelper.swift */,
+				49D4C424209F3ACD0065993D /* Settings.bundle */,
+				4920B35D2091579B0028CECC /* Info.plist */,
+			);
+			path = "Vigia App";
+			sourceTree = "<group>";
+		};
+		4920B3652091579B0028CECC /* Vigia AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				4920B3662091579B0028CECC /* Vigia_AppTests.swift */,
+				4920B3682091579B0028CECC /* Info.plist */,
+			);
+			path = "Vigia AppTests";
+			sourceTree = "<group>";
+		};
+		4961B5B620955E63000509A9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4961B5B420955E5D000509A9 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		499501982095619F00F7A975 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4919CCC220C9A9E1003FC461 /* HistoricoDeAcionamento */,
+				49EC456F2099FE670071B045 /* Condominios */,
+				499501A3209685FB00F7A975 /* Contato */,
+				4995019C20960C4400F7A975 /* Permissao */,
+				4961B5B620955E63000509A9 /* Login */,
+				4918BC452095529500CB8257 /* Lista de Festa */,
+				49BE63AF209540A100B99686 /* Home */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		49950199209561B200F7A975 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				49BE63A12092C77800B99686 /* DataBase.swift */,
+				4995019A209561C200F7A975 /* Entities.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4995019C20960C4400F7A975 /* Permissao */ = {
+			isa = PBXGroup;
+			children = (
+				4919CCC320C9C0A1003FC461 /* PermissaoTableViewCell.swift */,
+				49EC45672098978B0071B045 /* PermissaoViewController.swift */,
+				49EC4565209896C30071B045 /* PermissoesTableViewController.swift */,
+				4995019D20960C5B00F7A975 /* NovaPermissaoTableViewController.swift */,
+			);
+			name = Permissao;
+			sourceTree = "<group>";
+		};
+		499501A3209685FB00F7A975 /* Contato */ = {
+			isa = PBXGroup;
+			children = (
+				499501A1209685ED00F7A975 /* ContatoViewController.swift */,
+			);
+			name = Contato;
+			sourceTree = "<group>";
+		};
+		49BE63AF209540A100B99686 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				49EC456B2099FA2E0071B045 /* MenuMoradorViewController.swift */,
+				49EC45692099F96D0071B045 /* MenuVisitanteViewController.swift */,
+				49BE63B0209540CE00B99686 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		49EC45602097AFB60071B045 /* ListaDeFestaViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49EC455A2097AE480071B045 /* ListaDeFestaTableViewCell.swift */,
+				4961B5AE2095530A000509A9 /* ListaDeFestaTableViewController.swift */,
+			);
+			name = ListaDeFestaViewController;
+			sourceTree = "<group>";
+		};
+		49EC45612097AFFE0071B045 /* EventoTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49EC455C2097AF2A0071B045 /* ConvidadoEventoTableViewCell.swift */,
+				49EC455E2097AF410071B045 /* HeaderEventoTableViewCell.swift */,
+				495D8B1C20979F5400C4EF6F /* EventoTableViewController.swift */,
+			);
+			name = EventoTableViewController;
+			sourceTree = "<group>";
+		};
+		49EC45622097B0300071B045 /* EditarEventoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				495D8B1820976CD000C4EF6F /* ConvidadoTableViewCell.swift */,
+				495D8B16209751B200C4EF6F /* PickerHoraTableViewCell.swift */,
+				495D8B142097511F00C4EF6F /* PickerDataTableViewCell.swift */,
+				495D8B122097503600C4EF6F /* NomeDoEventoTableViewCell.swift */,
+				4961B5B220955C0F000509A9 /* EditarEventoTableViewController.swift */,
+				495D8B1A20976CE500C4EF6F /* AdicionarConvidadoTableViewCell.swift */,
+			);
+			name = EditarEventoViewController;
+			sourceTree = "<group>";
+		};
+		49EC456F2099FE670071B045 /* Condominios */ = {
+			isa = PBXGroup;
+			children = (
+				49EC45702099FE7F0071B045 /* PortaoTableViewCell.swift */,
+				49EC45722099FF420071B045 /* PortoesTableViewController.swift */,
+				49EC456D2099FE570071B045 /* CondominiosTableViewController.swift */,
+			);
+			name = Condominios;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4920B34D209157960028CECC /* V8 Monitoramento */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4920B36B2091579B0028CECC /* Build configuration list for PBXNativeTarget "V8 Monitoramento" */;
+			buildPhases = (
+				4920B34A209157960028CECC /* Sources */,
+				4920B34B209157960028CECC /* Frameworks */,
+				4920B34C209157960028CECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "V8 Monitoramento";
+			productName = "Vigia App";
+			productReference = 4920B34E209157960028CECC /* V8 Monitoramento.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4920B3612091579B0028CECC /* V8 MonitoramentoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4920B36E2091579B0028CECC /* Build configuration list for PBXNativeTarget "V8 MonitoramentoTests" */;
+			buildPhases = (
+				4920B35E2091579B0028CECC /* Sources */,
+				4920B35F2091579B0028CECC /* Frameworks */,
+				4920B3602091579B0028CECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4920B3642091579B0028CECC /* PBXTargetDependency */,
+			);
+			name = "V8 MonitoramentoTests";
+			productName = "Vigia AppTests";
+			productReference = 4920B3622091579B0028CECC /* V8 MonitoramentoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4920B346209157960028CECC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Osniel Lopes Teixeira";
+				TargetAttributes = {
+					4920B34D209157960028CECC = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					4920B3612091579B0028CECC = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = 4920B34D209157960028CECC;
+					};
+				};
+			};
+			buildConfigurationList = 4920B349209157960028CECC /* Build configuration list for PBXProject "V8 Monitoramento" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4920B345209157960028CECC;
+			productRefGroup = 4920B34F209157960028CECC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4920B34D209157960028CECC /* V8 Monitoramento */,
+				4920B3612091579B0028CECC /* V8 MonitoramentoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4920B34C209157960028CECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49D4C425209F3ACD0065993D /* Settings.bundle in Resources */,
+				4920B35C2091579B0028CECC /* LaunchScreen.storyboard in Resources */,
+				4920B357209157960028CECC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4920B3602091579B0028CECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4920B34A209157960028CECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49060AC320CC86E50059300A /* Assets.xcassets in Sources */,
+				4961B5B520955E5D000509A9 /* LoginViewController.swift in Sources */,
+				495A8B1E20A8ABB100BA9E28 /* Extensions.swift in Sources */,
+				4961B5B320955C0F000509A9 /* EditarEventoTableViewController.swift in Sources */,
+				495D8B1D20979F5400C4EF6F /* EventoTableViewController.swift in Sources */,
+				495D8B152097511F00C4EF6F /* PickerDataTableViewCell.swift in Sources */,
+				4961B5AF2095530B000509A9 /* ListaDeFestaTableViewController.swift in Sources */,
+				49EC455F2097AF410071B045 /* HeaderEventoTableViewCell.swift in Sources */,
+				49BE63A22092C77800B99686 /* DataBase.swift in Sources */,
+				495D8B17209751B200C4EF6F /* PickerHoraTableViewCell.swift in Sources */,
+				499501A2209685ED00F7A975 /* ContatoViewController.swift in Sources */,
+				49EC45732099FF420071B045 /* PortoesTableViewController.swift in Sources */,
+				4995019B209561C200F7A975 /* Entities.swift in Sources */,
+				495D8B1B20976CE500C4EF6F /* AdicionarConvidadoTableViewCell.swift in Sources */,
+				49EC456A2099F96D0071B045 /* MenuVisitanteViewController.swift in Sources */,
+				49EC45712099FE7F0071B045 /* PortaoTableViewCell.swift in Sources */,
+				49EC456C2099FA2E0071B045 /* MenuMoradorViewController.swift in Sources */,
+				495D8B1920976CD000C4EF6F /* ConvidadoTableViewCell.swift in Sources */,
+				4920B352209157960028CECC /* AppDelegate.swift in Sources */,
+				49BE63B1209540CE00B99686 /* HomeViewController.swift in Sources */,
+				49D4C427209F3B9D0065993D /* SettingsBundleHelper.swift in Sources */,
+				4919CCC420C9C0A1003FC461 /* PermissaoTableViewCell.swift in Sources */,
+				49EC4566209896C30071B045 /* PermissoesTableViewController.swift in Sources */,
+				495D8B132097503600C4EF6F /* NomeDoEventoTableViewCell.swift in Sources */,
+				49EC456E2099FE570071B045 /* CondominiosTableViewController.swift in Sources */,
+				49EC455D2097AF2A0071B045 /* ConvidadoEventoTableViewCell.swift in Sources */,
+				4919CCC120C9A9B4003FC461 /* HistoricoDeAcionamentoTableViewController.swift in Sources */,
+				49EC455B2097AE480071B045 /* ListaDeFestaTableViewCell.swift in Sources */,
+				49EC45682098978B0071B045 /* PermissaoViewController.swift in Sources */,
+				4995019E20960C5B00F7A975 /* NovaPermissaoTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4920B35E2091579B0028CECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4920B3672091579B0028CECC /* Vigia_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4920B3642091579B0028CECC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4920B34D209157960028CECC /* V8 Monitoramento */;
+			targetProxy = 4920B3632091579B0028CECC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4920B355209157960028CECC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4920B356209157960028CECC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4920B35A2091579B0028CECC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4920B35B2091579B0028CECC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4920B3692091579B0028CECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4920B36A2091579B0028CECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4920B36C2091579B0028CECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VFTGHK8J88;
+				INFOPLIST_FILE = "Vigia App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "br.MindConsulting.V8-Monitoramento";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4920B36D2091579B0028CECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VFTGHK8J88;
+				INFOPLIST_FILE = "Vigia App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "br.MindConsulting.V8-Monitoramento";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		4920B36F2091579B0028CECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53BLZ9DZN8;
+				INFOPLIST_FILE = "Vigia AppTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "br.OsnielTeixeira.Vigia-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/V8 Monitoramento.app/V8 Monitoramento";
+			};
+			name = Debug;
+		};
+		4920B3702091579B0028CECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 53BLZ9DZN8;
+				INFOPLIST_FILE = "Vigia AppTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "br.OsnielTeixeira.Vigia-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/V8 Monitoramento.app/V8 Monitoramento";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4920B349209157960028CECC /* Build configuration list for PBXProject "V8 Monitoramento" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4920B3692091579B0028CECC /* Debug */,
+				4920B36A2091579B0028CECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4920B36B2091579B0028CECC /* Build configuration list for PBXNativeTarget "V8 Monitoramento" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4920B36C2091579B0028CECC /* Debug */,
+				4920B36D2091579B0028CECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4920B36E2091579B0028CECC /* Build configuration list for PBXNativeTarget "V8 MonitoramentoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4920B36F2091579B0028CECC /* Debug */,
+				4920B3702091579B0028CECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4920B346209157960028CECC /* Project object */;
+}

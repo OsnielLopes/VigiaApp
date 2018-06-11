@@ -10,14 +10,44 @@ import UIKit
 
 class EditarEventoTableViewController: UITableViewController, PickerDelegate {
     
+    //MARK: - Variables
     var cells: [[EditarEventoTableViewCellType]]!
     var sectionsHeaders: [String?]!
+    var evento: Evento?
+    var convidados: [Convidado]?
+    //Formaters
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        return df
+    }()
+    let hourFormatter: DateFormatter = {
+        let hf = DateFormatter()
+        hf.dateFormat = "HH:mm"
+        return hf
+    }()
+    
+    //MARK: - View Life Cycle
+
+    override func viewWillAppear(_ animated: Bool) {
+        if evento != nil {
+            DataBase.ListaEventoManager.getConvidados(to: evento!.id) { (convidados) in
+                if convidados != nil {
+                    self.convidados = convidados
+                    self.cells[self.cells.count-1].insert(contentsOf: Array(repeating: EditarEventoTableViewCellType.convidado, count: convidados!.count), at: 0)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if cells == nil {
-            cells = [[.header],[.nomeEvento],[.dataEntrada,.dataSaida,.horaEntrada,.horaSaida],[.convidado,.novoConvidado]]
+            cells = [[.header],[.nomeEvento],[.dataEntrada,.horaEntrada,.horaSaida],[.convidado,.novoConvidado]]
         }
         
         if sectionsHeaders == nil {
@@ -56,6 +86,8 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
         }
     }
     
+    //MARK: - TableViewDelegate
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionsHeaders[section]
     }
@@ -70,6 +102,9 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
         case .nomeEvento:
             guard let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath) as? NomeDoEventoTableViewCell else {
                 fatalError("Impossible to dequeue the cell as \(cellType.rawValue)")
+            }
+            if evento != nil {
+                 newCell.nomeDoEvento.text = evento?.nome
             }
             cell = newCell
         case .pickerData:
@@ -86,21 +121,47 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
             newCell.row = indexPath.row
             newCell.delegate = self
             cell = newCell
+        case .dataEntrada:
+            let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath)
+            if evento != nil {
+                newCell.detailTextLabel?.text = dateFormatter.string(from: (evento?.data)!)
+            } else {
+                newCell.detailTextLabel?.text = dateFormatter.string(from: Date())
+            }
+            cell = newCell
+        case .horaEntrada:
+            let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath)
+            if evento != nil {
+                let endIndex = evento!.horaInicio.index(evento!.horaInicio.endIndex, offsetBy: -4)
+                newCell.detailTextLabel?.text = String((evento?.horaInicio[...endIndex])!)
+            }
+            cell = newCell
+        case .horaSaida:
+            let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath)
+            if evento != nil {
+                let endIndex = evento!.horaFim.index((evento?.horaFim.endIndex)!, offsetBy: -4)
+                newCell.detailTextLabel?.text = String((evento?.horaFim[...endIndex])!)
+            }
+            cell = newCell
+        
+        case .convidado:
+            guard let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath) as? ConvidadoTableViewCell else {
+                fatalError("Impossible to dequeue the cell as \(cellType.rawValue)")
+            }
+            if convidados != nil {
+                if convidados!.count > indexPath.row {
+                    newCell.nome.text = convidados![indexPath.row].nome
+                    newCell.rg.text = convidados![indexPath.row].rg
+                }
+            }
+            cell = newCell
         default:
             guard let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue) else {
                 fatalError("Impossible to dequeue the cell as \(cellType.rawValue)")
             }
             cell = newCell
         }
-        
-        if cellType == .dataEntrada || cellType == .dataSaida {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
-            cell.detailTextLabel?.text = formatter.string(from: Date())
-        }
-        
         cell.selectionStyle = .none
-        
         return cell
         
     }
@@ -109,7 +170,7 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
         let section = indexPath.section
         let row = indexPath.row
         let cellType = cells[section][row]
-        if cellType == .dataEntrada || cellType == .dataSaida {
+        if cellType == .dataEntrada {
             if row == cells[section].count-1 {
                 cells[section].insert(.pickerData, at: row+1)
                 tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableViewRowAnimation.automatic)
@@ -144,12 +205,14 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
         } else if cellType == .novoConvidado {
             cells[cells.count - 1].insert(.convidado, at: row)
             tableView.insertRows(at: [IndexPath(row: row, section: cells.count - 1)], with: .automatic)
+        } else if cellType == .convidado {
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
         }
 
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == cells.count - 1 && indexPath.row != cells[cells.count - 1].count-1 || indexPath.row == 0 && cells[cells.count - 1].count != 2 {
+        if indexPath.section == cells.count - 1 && indexPath.row != cells[cells.count - 1].count-1 /*|| indexPath.row == 0 && cells[cells.count - 1].count != 2*/ {
                 return true
         }
         return false
@@ -198,11 +261,11 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //PickerDelegate
+    //MARK: - PickerDelegate
     func didSelect(date: Date, on row: Int) {
-        let cell = tableView.cellForRow(at: IndexPath(row: row-1, section: 2))
+        let cell = tableView.cellForRow(at: IndexPath(row: row-1, section: cells.count-2))
         let formatter = DateFormatter()
-        if cells[cells.count - 2][row-1] == .dataEntrada || cells[2][row-1] == .dataSaida {
+        if cells[cells.count - 2][row-1] == .dataEntrada || cells[cells.count - 2][row-1] == .dataSaida {
             formatter.dateFormat = "dd/MM/yyyy"
         } else {
             formatter.dateStyle = .none

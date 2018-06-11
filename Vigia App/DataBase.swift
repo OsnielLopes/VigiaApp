@@ -25,10 +25,8 @@ class DataBase {
         }
         
         static func get(usuario: String, senha: String, completion: @escaping (_ credencial: Credencial?)->Void) {
-            
             let url = URL(string: "http://vigiaweb.com/API/credenciais/read.php?usuario=\(usuario)&senha=\(senha)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
-                
                 guard let data = data else {
                     print("Impossible to get the data from the server. Requisition: \(String(describing: url?.absoluteString))")
                     return
@@ -37,15 +35,20 @@ class DataBase {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .iso8601
                     let credencialArray = try decoder.decode([Credencial].self, from: data)
-                    let credencial = credencialArray.first
-                    UserDefaults().set(credencial?.id, forKey: "user_id")
-                    UserDefaults().set(credencial?.bases_id, forKey: "user_bases_id")
-                    completion(credencial)
+                    if credencialArray.count > 0 {
+                        let credencial = credencialArray.first
+                        UserDefaults().set(credencial?.pessoas_id, forKey: "user_pessoas_id")
+                        UserDefaults().set(credencial?.id, forKey: "user_credencial_id")
+                        UserDefaults().set(credencial?.bases_id, forKey: "user_bases_id")
+                        completion(credencial)
+                    } else {
+                        completion(nil)
+                    }
                 } catch let error {
                     print(error)
+                    completion(nil)
                 }
             }
-            
             task.resume()
         }
     }
@@ -69,9 +72,8 @@ class DataBase {
                     completion(permissoes)
                 } catch let error {
                     print(error)
-                    if let error = error as? DecodingError{
+                    if let error = error as? DecodingError {
                         switch error {
-                            
                         case .typeMismatch(_, let y):
                             print(y.debugDescription)
                         case .valueNotFound(_, let y):
@@ -125,38 +127,35 @@ class DataBase {
         
         static func mudarStatus(status: Int = 0, pessoasId: Int, salvopor: Int, completion: @escaping (_ didSabe: Bool)->Void){
             
-            let json: [String:Any] = [ "ativo": status, "pessoas_id": pessoasId, "salvopor": salvopor ]
-            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .sortedKeys)
-            print(String(data: jsonData!, encoding: .utf8))
-            // create post request
-            let url = URL(string: "http://vigiaweb.com/API/permissoes/update.php")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            print("INICIOU TASK URL")
-            
-            let task = URLSession.shared.uploadTask(with: request, from: jsonData) { data, response, error in
-                print("TASK URL EXECUTANDO")
+            DataBase.MoradorManager.getUnidade(for: UserDefaults.standard.integer(forKey: "user_pessoas_id")) { (unidade) in
                 
-                guard let data = data, error == nil else {
-                    
-                    print(error?.localizedDescription ?? "No data")
+                guard let unidade = unidade else {
+                    DispatchQueue.main.async {
+                        completion(false)
+                    }
                     return
                 }
                 
-                print("Response data: \(String(data: data, encoding: .utf8))")
-                
-                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    print(responseJSON)
+                let url = URL(string: "http://vigiaweb.com/API/permissoes/deleteVisitor.php?salvopor=\(salvopor)&pessoaid=\(pessoasId)&unidadeid=\(unidade)")!
+                let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+                    
+                    guard let data = data, error == nil else {
+                        print(error?.localizedDescription ?? "No data")
+                        return
+                    }
+                    
+                    print("Response data: \(String(data: data, encoding: .utf8) ?? "no data")")
+                    
+                    let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                    if let responseJSON = responseJSON as? [String: Any] {
+                        print(responseJSON)
+                    }
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
                 }
-                DispatchQueue.main.async {
-                    completion(true)
-                }
-                
+                task.resume()
             }
-            task.resume()
         }
         
     }
@@ -253,8 +252,8 @@ class DataBase {
     
     
     
-    class ListaFestaManager {
-        static func get(salvopor: Int, completion: @escaping (_ festas: [Festa])->Void){
+    class ListaEventoManager {
+        static func get(salvopor: Int, completion: @escaping (_ festas: [Evento])->Void){
             let url = URL(string: "http://vigiaweb.com/API/listafesta/read.php?salvopor=\(salvopor)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
@@ -267,7 +266,7 @@ class DataBase {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                    let festas = try decoder.decode([Festa].self, from: data)
+                    let festas = try decoder.decode([Evento].self, from: data)
                     completion(festas)
                     
                 } catch let error {
@@ -277,10 +276,34 @@ class DataBase {
             
             task.resume()
         }
+        
+        static func getConvidados(to festaId: Int, completion: @escaping (_ convidados: [Convidado]?)->Void) {
+            
+            let url = URL(string: "http://vigiaweb.com/API/visitante_festa/read.php?listafestaid=\(festaId)")
+            let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+                
+                guard let data = data else {
+                    print("Impossible to get the data from the server. Requisition: \(String(describing: url?.absoluteString))")
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    let convidados = try decoder.decode([Convidado].self, from: data)
+                    completion(convidados)
+                } catch let error {
+                    print(error)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                }
+            }
+            
+            task.resume()
+        }
     }
     
     class MoradorManager {
-        static func getUnidade(for pessoas_id: Int, completion: @escaping (_ unidade_id: Int)->Void){
+        static func getUnidade(for pessoas_id: Int, completion: @escaping (_ unidade_id: Int?)->Void){
             let url = URL(string: "http://vigiaweb.com/API/morador/read.php?atributo=UNIDADES_ID&pessoas_id=\(pessoas_id)")
             
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
@@ -291,10 +314,15 @@ class DataBase {
                 }
                 do {
                     let decoder = JSONDecoder()
-                    var idDictionary = try decoder.decode([[String:String]].self, from: data).first
-                    let id = Int((idDictionary!.popFirst()?.value)!)
+                    guard var idDictionary = try decoder.decode([[String:String]].self, from: data).first else {
+                        DispatchQueue.main.async {
+                            completion(nil)
+                        }
+                        return
+                    }
+                    let id = Int((idDictionary.popFirst()?.value)!)
                     DispatchQueue.main.async {
-                        completion(id!)
+                        completion(id)
                     }
                 } catch let error {
                     print(error)
@@ -304,6 +332,7 @@ class DataBase {
             
         }
     }
+    
 }
 
 

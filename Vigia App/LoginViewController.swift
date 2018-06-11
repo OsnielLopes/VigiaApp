@@ -60,19 +60,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func didTapEntrar(_ sender: UIButton) {
         if (loginTextField.text?.isEmpty)! || loginTextField.text == " " || (senhaTextField.text?.isEmpty)! || senhaTextField.text == " " {
             let alert = UIAlertController(title: "Atenção", message: "Algum dos campos digitados pode estar vazio.", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            
             self.present(alert, animated: true)
         } else {
+            let alert = UIAlertController(title: nil, message: "Verificando informações.", preferredStyle: .alert)
+            
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            loadingIndicator.startAnimating();
+            
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: nil)
+            
             DataBase.CredencialManager.get(usuario: loginTextField.text!, senha: senhaTextField.text!) { (credencial) in
                 guard credencial != nil else {
-                    let alert = UIAlertController(title: "Atenção", message: "Login ou senha inválidos!", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+                    alert.dismiss(animated: true, completion: {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Atenção", message: "Login ou senha inválidos!", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                        }
+                    })
                     return
                 }
-                self.performSegue(withIdentifier: "toHome", sender: nil)
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true, completion: {
+                        self.performSegue(withIdentifier: "toHome", sender: nil)
+                    })
+                }
             }
         }
     }

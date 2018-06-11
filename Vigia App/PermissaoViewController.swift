@@ -20,34 +20,53 @@ class PermissaoViewController: UIViewController {
     @IBOutlet weak var horario: UILabel!
     @IBOutlet weak var dias: UILabel!
     
+    
+    //MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
-        DataBase.PessoaManager.getNome(pessoaId: permissao.pessoasId) { (nome) in
-            DispatchQueue.main.async {
-                self.nome.text = nome
-            }
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        self.validade.text! += " \(dateFormatter.string(from: permissao.inicioLiberacao)) a \(dateFormatter.string(from: permissao.fimLiberacao))"
-        let hourFormatter = DateFormatter()
-        hourFormatter.dateStyle = .none
-        hourFormatter.timeStyle = .short
-        self.horario.text! += " das \(permissao.horaInicio!) às \(permissao.horaFim!)"
-        let nomeDias = permissao.getNomesDias()
-        for i in 0..<nomeDias.count {
-            if i != nomeDias.count-1 {
-                self.dias.text! += " \(nomeDias[i]),"
-            } else {
-                self.dias.text! += " \(nomeDias[i])"
-            }
-            
-        }
         
+        print("PermissaoViewController: View will appear")
+        
+        DataBase.PermissaoManager.get(usuarioId: UserDefaults.standard.integer(forKey: "user_credencial_id")) { (permissoes) in
+            
+            print("Permissões buscadas")
+            
+            for p in permissoes {
+                if p.pessoasId == self.permissao.pessoasId {
+                    self.permissao = p
+                    print("Encontrada a permissao específica")
+                    DataBase.PessoaManager.getNome(pessoaId: self.permissao.pessoasId) { (nome) in
+                        guard let nome = nome else {
+                            return 
+                        }
+                        DispatchQueue.main.async {
+                            self.nome.text = nome
+                        }
+                    }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    DispatchQueue.main.async {
+                        print("Inicializando atualizações de UI")
+                        self.validade.text! = "Autorização válida de \(dateFormatter.string(from: self.permissao.inicioLiberacao)) a \(dateFormatter.string(from: self.permissao.fimLiberacao))"
+                        self.horario.text = "Horário permitido: das \(self.permissao.horaInicio!) às \(self.permissao.horaFim!)"
+                        let nomeDias = self.permissao.getNomesDias()
+                        self.dias.text = "Dias permitidos:"
+                        for i in 0..<nomeDias.count {
+                            if i != nomeDias.count-1 {
+                                self.dias.text! += " \(nomeDias[i]),"
+                            } else {
+                                self.dias.text! += " \(nomeDias[i])"
+                            }
+                        }
+                    }
+                    break
+                }
+                
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 

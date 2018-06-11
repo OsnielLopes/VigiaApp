@@ -27,16 +27,25 @@ class MenuMoradorViewController: UIViewController {
         superViewController.performSegue(withIdentifier: "toPermissao", sender: nil)
     }
     
-    @IBAction func listaDeFestaTapped(_ sender: UIButton) {
-        superViewController.performSegue(withIdentifier: "toListaDeFesta", sender: nil)
+    @IBAction func listaDeEventoTapped(_ sender: UIButton) {
+//        let alert = UIAlertController(title: "Atenção", message: "Está função está em processo de implementação e será liberada em breve!", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.present(alert, animated: true)
+        superViewController.performSegue(withIdentifier: "toListaDeEvento", sender: nil)
     }
     
     @IBAction func historicoTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Atenção", message: "Está função está em processo de implementação e será liberada em breve!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
 //        superViewController.performSegue(withIdentifier: "toPermissao", sender: nil)
     }
     
     @IBAction func acionarPortaoTapped(_ sender: UIButton) {
-        superViewController.performSegue(withIdentifier: "toCondominios", sender: nil)
+        let alert = UIAlertController(title: "Atenção", message: "Está função está em processo de implementação e será liberada em breve!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+//        superViewController.performSegue(withIdentifier: "toCondominios", sender: nil)
     }
     
     

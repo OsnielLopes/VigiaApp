@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SettingsBundleHelper.checkAndExecuteSettings()
         
-        let userId = UserDefaults().integer(forKey: "user_id")
+        let userId = UserDefaults().integer(forKey: "user_credencial_id")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         if userId != 0 {
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        let userId = UserDefaults().integer(forKey: "user_id")
+        let userId = UserDefaults().integer(forKey: "user_credencial_id")
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         SettingsBundleHelper.checkAndExecuteSettings()
         
-        let userId = UserDefaults().integer(forKey: "user_id")
+        let userId = UserDefaults().integer(forKey: "user_credencial_id")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         if userId != 0 {

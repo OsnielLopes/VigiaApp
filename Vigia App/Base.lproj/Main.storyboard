@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4jE-Lq-GvR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4jE-Lq-GvR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -35,7 +35,7 @@
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="LoginViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="340" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -182,7 +182,7 @@
         <!--menuVisitante-->
         <scene sceneID="Hka-1H-Epb">
             <objects>
-                <viewController restorationIdentifier="menuVisitante" storyboardIdentifier="menuVisitante" title="menuVisitante" id="YkZ-Tn-O7J" customClass="MenuVisitanteViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="menuVisitante" storyboardIdentifier="menuVisitante" title="menuVisitante" id="YkZ-Tn-O7J" customClass="MenuVisitanteViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wvs-aw-6xv">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -392,7 +392,7 @@
         <!--menuMorador-->
         <scene sceneID="rSw-5p-GA5">
             <objects>
-                <viewController restorationIdentifier="menuMorador" storyboardIdentifier="menuMorador" title="menuMorador" id="Q9a-i7-CvU" customClass="MenuMoradorViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="menuMorador" storyboardIdentifier="menuMorador" title="menuMorador" id="Q9a-i7-CvU" customClass="MenuMoradorViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="iLR-sG-iaa">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -470,9 +470,9 @@
                                                                     <constraint firstAttribute="height" constant="50" id="Mg1-Ux-13j"/>
                                                                     <constraint firstAttribute="width" secondItem="gYT-BA-Ny0" secondAttribute="height" multiplier="1:1" id="v3k-TX-teb"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Cadastrar Festa" image="Lista Festa Main"/>
+                                                                <state key="normal" title="Cadastrar Evento" image="Lista Festa Main"/>
                                                                 <connections>
-                                                                    <action selector="listaDeFestaTapped:" destination="Q9a-i7-CvU" eventType="touchUpInside" id="TdL-8c-RYn"/>
+                                                                    <action selector="listaDeEventoTapped:" destination="Q9a-i7-CvU" eventType="touchUpInside" id="TdL-8c-RYn"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -623,7 +623,7 @@
         <!--Home-->
         <scene sceneID="bp1-7X-y1w">
             <objects>
-                <viewController id="ZtB-bn-Qpj" customClass="HomeViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZtB-bn-Qpj" customClass="HomeViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yZv-wv-n0u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -763,18 +763,63 @@
                     <connections>
                         <outlet property="menuContainer" destination="FLM-Bw-5WE" id="mm1-oH-bbm"/>
                         <segue destination="ika-ki-Fsz" kind="show" identifier="toPermissao" id="PXw-YU-c4Q"/>
-                        <segue destination="bea-zB-1ce" kind="show" identifier="toListaDeFesta" id="nMf-Cc-Ihk"/>
+                        <segue destination="bea-zB-1ce" kind="show" identifier="toListaDeEvento" id="nMf-Cc-Ihk"/>
                         <segue destination="o9w-pa-Z2K" kind="show" identifier="toCondominios" id="uOh-rY-8J3"/>
+                        <segue destination="f9C-7S-dKc" kind="show" identifier="toHistorico" id="ZnU-CO-ZIP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdw-es-Eea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1821.5999999999999" y="-183.05847076461771"/>
         </scene>
+        <!--Historico De Acionamento Table View Controller-->
+        <scene sceneID="ioF-GT-CHb">
+            <objects>
+                <tableViewController id="f9C-7S-dKc" customClass="HistoricoDeAcionamentoTableViewController" customModule="V8_Monitoramento" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vbd-Fu-h3j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="aTu-Pe-weL" detailTextLabel="hG1-Xe-njr" style="IBUITableViewCellStyleValue1" id="QNO-fZ-f8S">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QNO-fZ-f8S" id="6Mk-Dx-FsB">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aTu-Pe-weL">
+                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hG1-Xe-njr">
+                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="f9C-7S-dKc" id="1q2-f8-7it"/>
+                            <outlet property="delegate" destination="f9C-7S-dKc" id="6Nk-Ka-RKL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yqf-ds-laE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2951" y="-183"/>
+        </scene>
         <!--Condomínios-->
         <scene sceneID="thP-Wm-FkW">
             <objects>
-                <tableViewController id="o9w-pa-Z2K" customClass="CondominiosTableViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="o9w-pa-Z2K" customClass="CondominiosTableViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2um-Uh-PDM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -810,12 +855,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6c-MJ-seY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2761" y="-183"/>
+            <point key="canvasLocation" x="2814" y="-987"/>
         </scene>
         <!--Portão-->
         <scene sceneID="HaE-dX-S92">
             <objects>
-                <tableViewController id="xWC-Yv-AbL" customClass="PortoesTableViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xWC-Yv-AbL" customClass="PortoesTableViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lUV-Fz-jxr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -848,12 +893,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xkq-KN-T57" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3670" y="-183"/>
+            <point key="canvasLocation" x="3706" y="-987"/>
         </scene>
         <!--Lista de festa-->
         <scene sceneID="HmB-Is-CNW">
             <objects>
-                <tableViewController id="bea-zB-1ce" customClass="ListaDeFestaTableViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="bea-zB-1ce" customClass="ListaDeEventoTableViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="c2P-g4-ZBK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -890,7 +935,7 @@
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="500" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="festa" rowHeight="88" id="3DC-Gg-g7X" customClass="ListaDeFestaTableViewCell" customModule="Vigia_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="festa" rowHeight="88" id="3DC-Gg-g7X" customClass="ListaDeEventoTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="245" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3DC-Gg-g7X" id="Ohg-H8-lIt">
@@ -935,7 +980,7 @@
                                     <outlet property="data" destination="FJc-8b-Am7" id="2YK-NJ-zyr"/>
                                     <outlet property="evento" destination="YDa-YW-wIW" id="AJ8-B7-gua"/>
                                     <outlet property="horario" destination="sDu-X8-aGn" id="QmF-Jz-owb"/>
-                                    <segue destination="TPa-8B-goS" kind="show" identifier="" id="2lT-0b-NvO"/>
+                                    <segue destination="Pbt-2g-och" kind="show" id="OQp-bM-siV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -982,13 +1027,13 @@
         <!--Evento-->
         <scene sceneID="4Fd-M3-knZ">
             <objects>
-                <tableViewController id="TPa-8B-goS" customClass="EventoTableViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="TPa-8B-goS" customClass="EventoTableViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ilL-qp-KgT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="header" rowHeight="70" id="MwV-cf-gz9" customClass="HeaderEventoTableViewCell" customModule="Vigia_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="header" rowHeight="70" id="MwV-cf-gz9" customClass="HeaderEventoTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MwV-cf-gz9" id="WDg-AV-6Pp">
@@ -1024,7 +1069,7 @@
                                     <outlet property="nome" destination="89m-oj-4TS" id="Sfg-1s-le9"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="convidado" rowHeight="70" id="aS9-f5-rmH" customClass="ConvidadoEventoTableViewCell" customModule="Vigia_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="convidado" rowHeight="70" id="aS9-f5-rmH" customClass="ConvidadoEventoTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="98" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aS9-f5-rmH" id="dYR-bF-AW7">
@@ -1068,12 +1113,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9M-Z9-Afh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5425" y="638"/>
+            <point key="canvasLocation" x="5684" y="442"/>
         </scene>
         <!--Permissao View Controller-->
         <scene sceneID="6Q3-zz-Fbf">
             <objects>
-                <viewController id="2an-8d-BfB" customClass="PermissaoViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2an-8d-BfB" customClass="PermissaoViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u23-d4-muI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1138,7 +1183,7 @@
         <!--Nova Permissão-->
         <scene sceneID="w4Z-VJ-Btz">
             <objects>
-                <tableViewController id="MP2-o0-k1b" customClass="NovaPermissaoTableViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="MP2-o0-k1b" customClass="NovaPermissaoTableViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YLO-9x-eA7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1529,7 +1574,7 @@
         <!--Novo Evento-->
         <scene sceneID="FyJ-78-qkK">
             <objects>
-                <tableViewController id="BK5-YZ-vB7" customClass="EditarEventoTableViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="BK5-YZ-vB7" customClass="EditarEventoTableViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="v9r-jP-TrU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="986"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1575,7 +1620,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="nomeEvento" id="9XC-Lp-q6c" customClass="NomeDoEventoTableViewCell" customModule="Vigia_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="nomeEvento" id="9XC-Lp-q6c" customClass="NomeDoEventoTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="280.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9XC-Lp-q6c" id="ELA-f7-GN9">
@@ -1619,7 +1664,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerData" rowHeight="162" id="4TK-RX-gvL" customClass="PickerDataTableViewCell" customModule="Vigia_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerData" rowHeight="162" id="4TK-RX-gvL" customClass="PickerDataTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="368.5" width="375" height="162"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4TK-RX-gvL" id="hDu-15-PCZ">
@@ -1694,7 +1739,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerHora" rowHeight="162" id="TaV-sM-IH2" customClass="PickerHoraTableViewCell" customModule="Vigia_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pickerHora" rowHeight="162" id="TaV-sM-IH2" customClass="PickerHoraTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="618.5" width="375" height="162"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TaV-sM-IH2" id="vgM-nV-TGJ">
@@ -1745,7 +1790,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="convidado" rowHeight="88" id="yYM-rw-gBu" customClass="ConvidadoTableViewCell" customModule="Vigia_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="convidado" rowHeight="88" id="yYM-rw-gBu" customClass="ConvidadoTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="824.5" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yYM-rw-gBu" id="gCs-4a-ixQ">
@@ -1903,31 +1948,78 @@
         <!--Permissão-->
         <scene sceneID="v1A-to-ujU">
             <objects>
-                <tableViewController id="ika-ki-Fsz" customClass="PermissoesTableViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ika-ki-Fsz" customClass="PermissoesTableViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3Kg-a9-OAM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="permissao" textLabel="qeL-FC-2tc" style="IBUITableViewCellStyleDefault" id="GjQ-9a-Aue" userLabel="permissao">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="permissao" rowHeight="80" id="GjQ-9a-Aue" userLabel="permissao" customClass="PermissaoTableViewCell" customModule="V8_Monitoramento" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GjQ-9a-Aue" id="o8Q-s0-sJ1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qeL-FC-2tc">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gate_icon" translatesAutoresizingMaskIntoConstraints="NO" id="54S-h3-Cnq">
+                                            <rect key="frame" x="20" y="25" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="VvN-zr-1ho"/>
+                                                <constraint firstAttribute="width" constant="30" id="eVo-aR-nKM"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXg-yx-7Wy">
+                                            <rect key="frame" x="74" y="11" width="176" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ze1-gO-pEN">
+                                            <rect key="frame" x="74" y="40" width="176" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGY-mK-Ftg">
+                                            <rect key="frame" x="242" y="30" width="117" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="54S-h3-Cnq" firstAttribute="leading" secondItem="o8Q-s0-sJ1" secondAttribute="leading" constant="20" id="1DI-LU-GnI"/>
+                                        <constraint firstItem="54S-h3-Cnq" firstAttribute="centerY" secondItem="o8Q-s0-sJ1" secondAttribute="centerY" id="N4g-s7-cLZ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="nome" destination="FXg-yx-7Wy" id="TNd-qm-2wg"/>
+                                    <outlet property="periodo" destination="qGY-mK-Ftg" id="Owx-Kj-9SK"/>
+                                    <outlet property="rg" destination="ze1-gO-pEN" id="uQr-sP-MvO"/>
                                     <segue destination="2an-8d-BfB" kind="show" identifier="toPermissaoViewController" id="sk4-8T-d8K"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="banner" rowHeight="281" id="Oye-dg-dmL">
+                                <rect key="frame" x="0.0" y="108" width="375" height="281"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oye-dg-dmL" id="QPH-8W-If8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="280.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="permissoes_banner" translatesAutoresizingMaskIntoConstraints="NO" id="v0w-Z2-TX6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="280.5"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="v0w-Z2-TX6" firstAttribute="leading" secondItem="QPH-8W-If8" secondAttribute="leading" id="Pbr-e7-rH1"/>
+                                        <constraint firstAttribute="trailing" secondItem="v0w-Z2-TX6" secondAttribute="trailing" id="RK1-U2-AhP"/>
+                                        <constraint firstItem="v0w-Z2-TX6" firstAttribute="top" secondItem="QPH-8W-If8" secondAttribute="top" id="ag6-dG-JjR"/>
+                                        <constraint firstAttribute="bottom" secondItem="v0w-Z2-TX6" secondAttribute="bottom" id="qkc-Jw-Jhu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1945,12 +2037,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSN-2K-iNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5463" y="2239"/>
+            <point key="canvasLocation" x="5461.6000000000004" y="2238.530734632684"/>
         </scene>
         <!--Contato View Controller-->
         <scene sceneID="7fk-dL-hfB">
             <objects>
-                <viewController id="oc2-a8-PUq" customClass="ContatoViewController" customModule="Vigia_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oc2-a8-PUq" customClass="ContatoViewController" customModule="V8_Monitoramento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dF9-ed-SnP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2034,14 +2126,16 @@
         <image name="circle" width="100" height="100"/>
         <image name="comunicar" width="112" height="112"/>
         <image name="festa_banner" width="227" height="158"/>
+        <image name="gate_icon" width="110" height="110"/>
         <image name="login_bg" width="374" height="383"/>
-        <image name="logo" width="420" height="280"/>
+        <image name="logo" width="256" height="256"/>
         <image name="novoEvento_banner" width="336" height="233"/>
+        <image name="permissoes_banner" width="201" height="140"/>
         <image name="relatorios" width="364" height="475"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WHN-Xi-K8A"/>
-        <segue reference="8Fx-Zb-EZS"/>
+        <segue reference="OSc-M4-1my"/>
         <segue reference="OFb-W0-ERs"/>
     </inferredMetricsTieBreakers>
 </document>

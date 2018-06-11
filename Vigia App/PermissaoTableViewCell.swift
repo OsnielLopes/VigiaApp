@@ -1,20 +1,20 @@
 //
-//  ListaDeEventoTableViewCell.swift
-//  Vigia App
+//  PermissaoTableViewCell.swift
+//  V8 Monitoramento
 //
-//  Created by Osniel Lopes Teixeira on 30/04/2018.
+//  Created by Osniel Lopes Teixeira on 07/06/18.
 //  Copyright © 2018 Osniel Lopes Teixeira. All rights reserved.
 //
 
 import UIKit
 
-class ListaDeEventoTableViewCell: UITableViewCell {
+class PermissaoTableViewCell: UITableViewCell {
     
     //IBOutlets
-    @IBOutlet weak var evento: UILabel!
-    @IBOutlet weak var data: UILabel!
-    @IBOutlet weak var horario: UILabel!
-    
+    @IBOutlet weak var nome: UILabel!
+    @IBOutlet weak var rg: UILabel!
+    @IBOutlet weak var periodo: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

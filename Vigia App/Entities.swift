@@ -86,7 +86,7 @@ struct Condominio {
     var basesid: [Int]
 }
 
-struct Festa: Decodable {
+struct Evento: Decodable {
     var id: Int!
     var nome: String!
     var data: Date!
@@ -202,6 +202,16 @@ struct Permissao: Decodable, Encodable {
             }
         }
         return nomesRet
+    }
+}
+
+struct Convidado: Decodable {
+    var nome: String!
+    var rg: String!
+    
+    enum CodingKeys: String, CodingKey {
+        case nome = "NOME"
+        case rg = "RG"
     }
 }
 
