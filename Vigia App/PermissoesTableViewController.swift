@@ -107,9 +107,9 @@ class PermissoesTableViewController: UITableViewController {
             //TODO: - Como desativar uma permissao?
             let userId = UserDefaults.standard.integer(forKey: "user_pessoas_id")
             
-            DataBase.PermissaoManager.mudarStatus(pessoasId: permissoes[indexPath.row-1].pessoasId, salvopor: userId) { (completed) in
+            DataBase.PermissaoManager.mudarStatus(pessoasId: permissoes[indexPath.row].pessoasId, salvopor: userId) { (completed) in
                 if completed {
-                    self.permissoes.remove(at: indexPath.row-1)
+                    self.permissoes.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     
                 }
@@ -141,7 +141,7 @@ class PermissoesTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if let permissaoViewController = segue.destination as? PermissaoViewController {
-            permissaoViewController.permissao = permissoes[((tableView.indexPathForSelectedRow?.row)!-1)]
+            permissaoViewController.permissao = permissoes[((tableView.indexPathForSelectedRow?.row)!)]
         }
         
     }

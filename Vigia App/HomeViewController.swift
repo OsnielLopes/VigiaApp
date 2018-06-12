@@ -14,13 +14,14 @@ class HomeViewController: UIViewController {
     
     func setupMenu() {
         
-        guard let credencial = DataBase.CredencialManager.credencial else  {
-            fatalError("Credencial inválida")
-        }
-        
+//        guard let credencial = DataBase.CredencialManager.credencial else  {
+//            fatalError("Credencial inválida")
+//        }
+        //FIXME: - 01: O id da credencial está salvo no UserDefaults como user_credencial_id, solicitar o nível de acesso através dele ou salvá-lo em no UserDefaults quando do momento do login
+    
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        switch credencial.nivelAcesso {
-        case 0:
+//        switch credencial.nivelAcesso {
+//        case 0:
             guard let controller = storyboard.instantiateViewController(withIdentifier: "menuMorador") as? MenuMoradorViewController else {
                 fatalError("Impossible to convert the viewController to MenuMoradorViewController")
             }
@@ -29,27 +30,27 @@ class HomeViewController: UIViewController {
             controller.view.frame = CGRect(x: 0, y: 0, width: menuContainer.frame.width, height: menuContainer.frame.height)
             menuContainer.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
-        case 1:
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "menuGestor") as? MenuGestorViewController else {
-                fatalError("Impossible to convert the viewController to MenuGestorViewController")
-            }
-            controller.superViewController = self
-            self.addChildViewController(controller)
-            controller.view.frame = CGRect(x: 0, y: 0, width: menuContainer.frame.width, height: menuContainer.frame.height)
-            menuContainer.addSubview(controller.view)
-            controller.didMove(toParentViewController: self)
-        case 2:
-            guard let controller = storyboard.instantiateViewController(withIdentifier: "menuVisitante") as? MenuVisitanteViewController else {
-                fatalError("Impossible to convert the viewController to MenuVisitanteViewController")
-            }
-            controller.superViewController = self
-            self.addChildViewController(controller)
-            controller.view.frame = CGRect(x: 0, y: 0, width: menuContainer.frame.width, height: menuContainer.frame.height)
-            menuContainer.addSubview(controller.view)
-            controller.didMove(toParentViewController: self)
-        default:
-            break
-        }
+//        case 1:
+//            guard let controller = storyboard.instantiateViewController(withIdentifier: "menuGestor") as? MenuGestorViewController else {
+//                fatalError("Impossible to convert the viewController to MenuGestorViewController")
+//            }
+//            controller.superViewController = self
+//            self.addChildViewController(controller)
+//            controller.view.frame = CGRect(x: 0, y: 0, width: menuContainer.frame.width, height: menuContainer.frame.height)
+//            menuContainer.addSubview(controller.view)
+//            controller.didMove(toParentViewController: self)
+//        case 2:
+//            guard let controller = storyboard.instantiateViewController(withIdentifier: "menuVisitante") as? MenuVisitanteViewController else {
+//                fatalError("Impossible to convert the viewController to MenuVisitanteViewController")
+//            }
+//            controller.superViewController = self
+//            self.addChildViewController(controller)
+//            controller.view.frame = CGRect(x: 0, y: 0, width: menuContainer.frame.width, height: menuContainer.frame.height)
+//            menuContainer.addSubview(controller.view)
+//            controller.didMove(toParentViewController: self)
+//        default:
+//            break
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
