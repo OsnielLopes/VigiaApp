@@ -14,12 +14,10 @@ class HomeViewController: UIViewController {
     
     func setupMenu() {
         
-        guard let credencial = DataBase.CredencialManager.credencial else  {
-            fatalError("Credencial inválida")
-        }
+        let nivelAcesso = UserDefaults().integer(forKey: "nivel_acesso")
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        switch credencial.nivelAcesso {
+        switch nivelAcesso {
         case 0:
             guard let controller = storyboard.instantiateViewController(withIdentifier: "menuMorador") as? MenuMoradorViewController else {
                 fatalError("Impossible to convert the viewController to MenuMoradorViewController")

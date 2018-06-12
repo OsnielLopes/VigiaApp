@@ -24,8 +24,6 @@ class DataBase {
             }
         }
         
-        static var credencial: Credencial?
-        
         static func get(usuario: String, senha: String, completion: @escaping (_ credencial: Credencial?)->Void) {
             let url = URL(string: "http://vigiaweb.com/API/credenciais/read.php?usuario=\(usuario)&senha=\(senha)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
@@ -42,7 +40,7 @@ class DataBase {
                         UserDefaults().set(credencial?.pessoas_id, forKey: "user_pessoas_id")
                         UserDefaults().set(credencial?.id, forKey: "user_credencial_id")
                         UserDefaults().set(credencial?.bases_id, forKey: "user_bases_id")
-                        self.credencial = credencial
+                        UserDefaults().set(credencial?.nivelAcesso, forKey: "nivel_acesso")
                         completion(credencial)
                     } else {
                         completion(nil)
@@ -256,6 +254,41 @@ class DataBase {
     
     
     class ListaEventoManager {
+        
+        static func create(json: [String:Any], completion: @escaping (_ saved: Bool)->Void) {
+            
+            //nome, rg, inicioliberacao, fimliberacao, diasliberacao, horainicio, horafim, unidades_id, bases_id, salvopor
+            
+            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .sortedKeys)
+            print(String(data: jsonData!, encoding: .utf8))
+            // create post request
+            let url = URL(string: "http://vigiaweb.com/API/listafesta/createEvent.php")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            print("INICIOU TASK URL")
+            
+            let task = URLSession.shared.uploadTask(with: request, from: jsonData) { data, response, error in
+                print("TASK URL EXECUTANDO")
+                
+                guard let data = data, error == nil else {
+                    
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                
+                print(String(data: data, encoding: .utf8))
+                
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                    print(responseJSON)
+                }
+                completion(true)
+            }
+            task.resume()
+        }
+        
         static func get(salvopor: Int, completion: @escaping (_ festas: [Evento])->Void){
             let url = URL(string: "http://vigiaweb.com/API/listafesta/read.php?salvopor=\(salvopor)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in

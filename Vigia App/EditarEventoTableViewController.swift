@@ -8,13 +8,26 @@
 
 import UIKit
 
-class EditarEventoTableViewController: UITableViewController, PickerDelegate {
+protocol EventDelegate: class {
+    func getName(_ name: String)
+}
+
+
+class EditarEventoTableViewController: UITableViewController, PickerDelegate, EventDelegate {
     
     //MARK: - Variables
     var cells: [[EditarEventoTableViewCellType]]!
     var sectionsHeaders: [String?]!
     var evento: Evento?
     var convidados: [Convidado]?
+    
+    var nomeEvento: String?
+    var unidadeID: Int?
+    var data: Date?
+    var horaInicio: String?
+    var horaFim: String?
+    var salvoPor: String?
+    
     //Formaters
     let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -103,14 +116,20 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
             guard let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath) as? NomeDoEventoTableViewCell else {
                 fatalError("Impossible to dequeue the cell as \(cellType.rawValue)")
             }
+            newCell.delegate = self
             if evento != nil {
                  newCell.nomeDoEvento.text = evento?.nome
+            } else {
+                
+                
             }
             cell = newCell
         case .pickerData:
             guard let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath) as? PickerDataTableViewCell else {
                 fatalError("Impossible to dequeue the cell as \(cellType.rawValue)")
             }
+            
+            newCell.delegate = self
             newCell.row = indexPath.row
             newCell.delegate = self
             cell = newCell
@@ -118,6 +137,7 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
             guard let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath) as? PickerHoraTableViewCell else {
                 fatalError("Impossible to dequeue the cell as \(cellType.rawValue)")
             }
+            newCell.delegate = self
             newCell.row = indexPath.row
             newCell.delegate = self
             cell = newCell
@@ -254,6 +274,12 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
     }
     
     @IBAction func salvarTapped(_ sender: Any) {
+        if evento != nil {
+            
+        } else {
+           //DataBase.ListaEventoManager.create(json: <#T##[String : Any]#>, completion: <#T##(Bool) -> Void#>)
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -274,6 +300,21 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate {
         }
         
         cell?.detailTextLabel?.text = formatter.string(from: date)
+        
+        
+        if cells[cells.count - 2][row-1] == .horaEntrada {
+            self.horaInicio = formatter.string(from: date)
+            
+        } else if cells[cells.count - 2][row-1] == .horaSaida {
+            self.horaFim = formatter.string(from: date)
+        } else if cells[cells.count - 2][row-1] == .dataEntrada {
+            self.data = date
+        }
+    }
+    
+    //MARK: - EventDelegate
+    func getName(_ name: String) {
+        self.nomeEvento = name
     }
     
 }

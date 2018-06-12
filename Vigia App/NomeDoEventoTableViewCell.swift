@@ -11,11 +11,12 @@ import UIKit
 class NomeDoEventoTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var nomeDoEvento: UITextField!
+    
+    weak var delegate: EventDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
         nomeDoEvento.delegate = self
     }
 
@@ -26,6 +27,9 @@ class NomeDoEventoTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let name = textField.text {
+           delegate?.getName(name)
+        }
         textField.resignFirstResponder()
         return false
     }
