@@ -42,6 +42,7 @@ class DataBase {
                         UserDefaults().set(credencial?.pessoas_id, forKey: "user_pessoas_id")
                         UserDefaults().set(credencial?.id, forKey: "user_credencial_id")
                         UserDefaults().set(credencial?.bases_id, forKey: "user_bases_id")
+                        self.credencial = credencial
                         completion(credencial)
                     } else {
                         completion(nil)

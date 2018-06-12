@@ -13,6 +13,7 @@ class PermissoesTableViewController: UITableViewController {
     var permissoes = [Permissao]()
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         print("view will appear")
         let userId = UserDefaults.standard.integer(forKey: "user_credencial_id")
         DataBase.PermissaoManager.get(usuarioId: userId) { (p) in
@@ -47,25 +48,25 @@ class PermissoesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return permissoes.count + 1
+        return permissoes.count //+ 1
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == 0 ? 281 : 80
+        return 80 //indexPath.row == 0 ? 281 : 80
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
-            let bannerCell = tableView.dequeueReusableCell(withIdentifier: "banner")
-            return bannerCell!
-        }
-        
+//        if indexPath.row == 0 {
+//            let bannerCell = tableView.dequeueReusableCell(withIdentifier: "banner")
+//            return bannerCell!
+//        }
+        guard permissoes.count > 0 else  { return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "permissao", for: indexPath) as? PermissaoTableViewCell else {
             fatalError("Incapable of dequeueing a UITableViewCell to PermissaoTableViewCell")
         }
-
-        if let id = permissoes[indexPath.row-1].pessoasId {
+        
+        if let id = permissoes[indexPath.row].pessoasId {
             //TODO: Criar uma única requisição que retorne nome e rg
             DataBase.PessoaManager.getNome(pessoaId: id) { (nome) in
                 if let n = nome {
@@ -82,11 +83,11 @@ class PermissoesTableViewController: UITableViewController {
                 }
             }
         } else {
-            fatalError("Impossible to get the id for the \(indexPath.row-1)th permission")
+            fatalError("Impossible to get the id for the \(indexPath.row)th permission")
         }
         
-        guard let inicioLiberacao = permissoes[indexPath.row-1].inicioLiberacao, let fimLiberacao = permissoes[indexPath.row-1].fimLiberacao else {
-            fatalError("Impossible to get the initial or final date for the \(indexPath.row-1)th permission")
+        guard let inicioLiberacao = permissoes[indexPath.row].inicioLiberacao, let fimLiberacao = permissoes[indexPath.row].fimLiberacao else {
+            fatalError("Impossible to get the initial or final date for the \(indexPath.row)th permission")
 
         }
         
