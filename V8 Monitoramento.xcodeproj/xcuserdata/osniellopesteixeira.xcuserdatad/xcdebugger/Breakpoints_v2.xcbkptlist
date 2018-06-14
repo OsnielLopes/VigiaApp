@@ -98,11 +98,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vigia App/LoginViewController.swift"
-            timestampString = "550262896.996483"
+            timestampString = "550691337.348325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "didTapEntrar(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -114,13 +114,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vigia App/EditarEventoTableViewController.swift"
-            timestampString = "550283057.424525"
+            timestampString = "550691337.365743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            landmarkName = "dateFormatter"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

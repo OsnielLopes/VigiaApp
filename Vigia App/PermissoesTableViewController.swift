@@ -102,7 +102,7 @@ class PermissoesTableViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //TODO: - Como desativar uma permissao?
             let userId = UserDefaults.standard.integer(forKey: "user_pessoas_id")
