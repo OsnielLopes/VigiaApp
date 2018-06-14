@@ -14,21 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         SettingsBundleHelper.checkAndExecuteSettings()
         
         let userId = UserDefaults().integer(forKey: "user_credencial_id")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+        //self.window = UIWindow(frame: UIScreen.main.bounds)
         if userId != 0 {
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeNavigationController")
         } else {
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
             
         }
-        self.window?.makeKeyAndVisible()
+        //self.window?.makeKeyAndVisible()
         
         return true
     }
@@ -44,33 +44,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        let userId = UserDefaults().integer(forKey: "user_credencial_id")
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        if userId != 0 {
-            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeNavigationController")
-        } else {
-            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
-           
-        }
-         self.window?.makeKeyAndVisible()
+//        let userId = UserDefaults().integer(forKey: "user_credencial_id")
+//
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        if userId != 0 {
+//            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeNavigationController")
+//        } else {
+//            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
+//
+//        }
+//         self.window?.makeKeyAndVisible()
 
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        SettingsBundleHelper.checkAndExecuteSettings()
-        
-        let userId = UserDefaults().integer(forKey: "user_credencial_id")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        if userId != 0 {
-            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeNavigationController")
-        } else {
-            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
-            
-        }
-        self.window?.makeKeyAndVisible()
+//        SettingsBundleHelper.checkAndExecuteSettings()
+//        
+//        let userId = UserDefaults().integer(forKey: "user_credencial_id")
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        if userId != 0 {
+//            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeNavigationController")
+//        } else {
+//            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
+//            
+//        }
+//        self.window?.makeKeyAndVisible()
 
     }
 
