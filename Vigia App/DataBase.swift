@@ -163,8 +163,6 @@ class DataBase {
         
     }
     
-    
-    
     class PessoaManager {
         
         struct NomeResponse: Decodable {

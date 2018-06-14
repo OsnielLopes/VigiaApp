@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 enum NivelAcesso: String {
     case morador = "Morador"
@@ -137,5 +138,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustInsetForKeyboardShow(false, notification: notification)
     }
-
+    
+    //MARK: - IBActions
+    @IBAction func cadastrar(_ sender: UIButton) {
+        guard let url = URL(string: "http://www.v8monitoramento.com.br/autocadastro/") else {
+            fatalError("Impossible to create the URL")
+        }
+        let safari = SFSafariViewController(url: url)
+        self.present(safari, animated: true, completion: nil)
+    }
+    
 }
