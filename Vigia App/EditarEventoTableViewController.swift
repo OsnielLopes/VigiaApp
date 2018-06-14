@@ -193,33 +193,33 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate, Ev
         if cellType == .dataEntrada {
             if row == cells[section].count-1 {
                 cells[section].insert(.pickerData, at: row+1)
-                tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableViewRowAnimation.automatic)
+                tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableView.RowAnimation.automatic)
                 self.tableView.deselectRow(at: indexPath, animated: false)
             } else
                 if cells[section][row+1] != .pickerData {
                     cells[section].insert(.pickerData, at: row+1)
-                    tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableViewRowAnimation.automatic)
+                    tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableView.RowAnimation.automatic)
                     self.tableView.deselectRow(at: indexPath, animated: false)
                 } else {
                     cells[section].remove(at: row+1)
-                    tableView.deleteRows(at: [IndexPath(row: row+1, section: section)], with: UITableViewRowAnimation.top)
+                    tableView.deleteRows(at: [IndexPath(row: row+1, section: section)], with: UITableView.RowAnimation.top)
                     self.tableView.deselectRow(at: indexPath, animated: false)
             }
         } else if cellType == .horaEntrada || cellType == .horaSaida {
             
             if row == cells[section].count-1 {
                 cells[section].insert(.pickerHora, at: row+1)
-                tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableViewRowAnimation.automatic)
+                tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableView.RowAnimation.automatic)
                 self.tableView.deselectRow(at: indexPath, animated: false)
             } else if cells[section][row+1] != .pickerHora {
                 cells[section].insert(.pickerHora, at: row+1)
-                tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableViewRowAnimation.automatic)
+                tableView.insertRows(at: [IndexPath(row: row+1, section: section)], with: UITableView.RowAnimation.automatic)
                 self.tableView.deselectRow(at: indexPath, animated: false)
             }
                 
             else {
                 cells[section].remove(at: row+1)
-                tableView.deleteRows(at: [IndexPath(row: row+1, section: section)], with: UITableViewRowAnimation.top)
+                tableView.deleteRows(at: [IndexPath(row: row+1, section: section)], with: UITableView.RowAnimation.top)
                 self.tableView.deselectRow(at: indexPath, animated: false)
             }
         } else if cellType == .novoConvidado {
@@ -238,7 +238,7 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate, Ev
         return false
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             cells[cells.count - 1].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)

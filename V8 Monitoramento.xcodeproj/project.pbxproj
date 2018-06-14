@@ -329,9 +329,11 @@
 				TargetAttributes = {
 					4920B34D209157960028CECC = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 					4920B3612091579B0028CECC = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						TestTargetID = 4920B34D209157960028CECC;
 					};
 				};
@@ -579,7 +581,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "br.MindConsulting.V8-Monitoramento";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -597,7 +599,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "br.MindConsulting.V8-Monitoramento";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -617,7 +619,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "br.OsnielTeixeira.Vigia-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/V8 Monitoramento.app/V8 Monitoramento";
 			};
@@ -638,7 +640,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "br.OsnielTeixeira.Vigia-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/V8 Monitoramento.app/V8 Monitoramento";
 			};
