@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userId != 0 {
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "homeNavigationController")
         } else {
-            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
+            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")// loginNavigationController
             
         }
         //self.window?.makeKeyAndVisible()

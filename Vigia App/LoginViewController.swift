@@ -127,6 +127,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - Auxiliar Functions
     func adjustInsetForKeyboardShow(_ show: Bool, notification: Notification) {
+        scrollView.contentInset.bottom = 0
+        scrollView.scrollIndicatorInsets.bottom = 0
         let userInfo = notification.userInfo ?? [:]
         let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)
