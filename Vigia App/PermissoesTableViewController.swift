@@ -24,12 +24,15 @@ class PermissoesTableViewController: UITableViewController {
                             if let rg = rg {
                                 self.permissoes.append((p[i], nome: n, rg: rg))
                             }
+                            
+                            if i == p.count - 1 {
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
                         }
                     }
                 }
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
             }
         }
     }
