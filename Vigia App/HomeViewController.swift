@@ -12,6 +12,11 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var menuContainer: UIView!
     
+    @IBAction func logoutBtnPressed(_ sender: UIBarButtonItem) {
+        UserDefaults.standard.set(0, forKey: "user_credencial_id")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        self.view.window!.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
+    }
     func setupMenu() {
         
         let nivelAcesso = UserDefaults().integer(forKey: "nivel_acesso")

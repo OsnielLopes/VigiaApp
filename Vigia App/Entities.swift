@@ -145,6 +145,8 @@ struct Permissao: Decodable, Encodable {
     var salvoEm: Date!
     var salvoPor: Int!
     var ativo: Bool!
+    var nome: String?
+    var rg: String?
     
     enum CodingKeys: String, CodingKey {
         case permissao = "PERMISSAO"
