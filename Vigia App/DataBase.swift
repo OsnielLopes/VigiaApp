@@ -25,7 +25,7 @@ class DataBase {
         }
         
         static func get(usuario: String, senha: String, completion: @escaping (_ credencial: Credencial?)->Void) {
-            let url = URL(string: "http://vigiaweb.com/API/credenciais/read.php?usuario=\(usuario)&senha=\(senha)")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/credenciais/readUser.php?usuario=\(usuario)&senha=\(senha)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 guard let data = data else {
                     print("Impossible to get the data from the server. Requisition: \(String(describing: url?.absoluteString))")
@@ -57,7 +57,7 @@ class DataBase {
     class PermissaoManager {
         
         static func get(usuarioId: Int, completion: @escaping (_ permissoes: [Permissao])->Void) {
-            let url = URL(string: "http://vigiaweb.com/API/permissoes/read.php?salvopor=\(usuarioId)")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/permissoes/read.php?salvopor=\(usuarioId)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
@@ -99,7 +99,7 @@ class DataBase {
             let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .sortedKeys)
             print(String(data: jsonData!, encoding: .utf8))
             // create post request
-            let url = URL(string: "http://vigiaweb.com/API/permissoes/create.php")!
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/permissoes/create.php")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -137,7 +137,7 @@ class DataBase {
                     return
                 }
                 
-                let url = URL(string: "http://vigiaweb.com/API/permissoes/deleteVisitor.php?salvopor=\(salvopor)&pessoaid=\(pessoasId)&unidadeid=\(unidade)")!
+                let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/permissoes/deleteVisitor.php?salvopor=\(salvopor)&pessoaid=\(pessoasId)&unidadeid=\(unidade)")!
                 let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
                     
                     guard let data = data, error == nil else {
@@ -196,7 +196,7 @@ class DataBase {
         }
         
         static func getNome(pessoaId: Int, completion: @escaping (_ nome: String?)->Void) {
-            let url = URL(string: "http://vigiaweb.com/API/pessoas/getNome.php?id=\(pessoaId)")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/pessoas/getNome.php?id=\(pessoaId)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
@@ -222,7 +222,7 @@ class DataBase {
         }
         
         static func getRG(pessoaId: Int, completion: @escaping (_ rg: String?)->Void) {
-            let url = URL(string: "http://vigiaweb.com/API/pessoas/read.php?id=\(pessoaId)&attributes=RG")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/pessoas/read.php?id=\(pessoaId)&attributes=RG")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
@@ -260,7 +260,7 @@ class DataBase {
             let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .sortedKeys)
             print(String(data: jsonData!, encoding: .utf8))
             // create post request
-            let url = URL(string: "http://vigiaweb.com/API/listafesta/createEvent.php")!
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/listafesta/createEvent.php")!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -288,7 +288,7 @@ class DataBase {
         }
         
         static func get(salvopor: Int, completion: @escaping (_ festas: [Evento])->Void){
-            let url = URL(string: "http://vigiaweb.com/API/listafesta/read.php?salvopor=\(salvopor)")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/listafesta/read.php?salvopor=\(salvopor)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
@@ -313,7 +313,7 @@ class DataBase {
         
         static func getConvidados(to festaId: Int, completion: @escaping (_ convidados: [Convidado]?)->Void) {
             
-            let url = URL(string: "http://vigiaweb.com/API/visitante_festa/read.php?listafestaid=\(festaId)")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/visitante_festa/read.php?listafestaid=\(festaId)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
@@ -338,8 +338,8 @@ class DataBase {
     
     class MoradorManager {
         static func getUnidade(for pessoas_id: Int, completion: @escaping (_ unidade_id: Int?)->Void){
-            let url = URL(string: "http://vigiaweb.com/API/morador/read.php?atributo=UNIDADES_ID&pessoas_id=\(pessoas_id)")
-            
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/morador/read.php?atributo=UNIDADES_ID&pessoas_id=\(pessoas_id)")
+        
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
