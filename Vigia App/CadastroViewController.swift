@@ -138,7 +138,7 @@ class CadastroViewController: UIViewController, UITextFieldDelegate, UIImagePick
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
         if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) {
-            picker.mediaTypes = mediaTypes
+            picker.mediaTypes = [mediaTypes.first] as! [String]
             present(picker, animated: true, completion: nil)
         }
     }
@@ -147,7 +147,7 @@ class CadastroViewController: UIViewController, UITextFieldDelegate, UIImagePick
         picker.allowsEditing = false
         picker.sourceType = .camera
         if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) {
-            picker.mediaTypes = mediaTypes
+            picker.mediaTypes = [mediaTypes.first] as! [String]
             present(picker, animated: true, completion: nil)
         }
         
