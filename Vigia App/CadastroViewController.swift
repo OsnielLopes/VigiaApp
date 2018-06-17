@@ -68,11 +68,39 @@ class CadastroViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - IBActions
     @IBAction func cadastrarBtnPressed(_ sender: Any) {
-        
-    }
-    
-    @IBAction func cameraBtnPressed(_ sender: Any) {
-        
+        let alert = UIAlertController(title: "Atenção", message: "Insira o token referente ao seu condomínio:", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Verificar", style: .default, handler: { (action) in
+            let loadingAlert = UIAlertController(title: nil, message: "Verificando...", preferredStyle: .alert)
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = .gray
+            loadingIndicator.startAnimating();
+            loadingAlert.view.addSubview(loadingIndicator)
+            DispatchQueue.main.async {
+                self.present(loadingAlert, animated: true)
+            }
+            DataBase.CondominioManager.getCondominioForToken(token: (alert.textFields?.first?.text)!, completion: { (condCod) in
+                DispatchQueue.main.async {
+                    loadingAlert.dismiss(animated: true, completion: nil)
+                }
+                guard let condCod = condCod else {
+                    let alert = UIAlertController(title: "Atenção", message: "Token inválido!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    return
+                }
+                let alert = UIAlertController(title: "Atenção", message: "Token validado!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Continuar", style: .default, handler: nil))
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+        }))
+        alert.addTextField(configurationHandler: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     //MARK: - UITextFieldDelegate

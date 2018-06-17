@@ -10,7 +10,33 @@ import Foundation
 
 class DataBase {
     
-    // MARK: - Properties
+    class CondominioManager {
+        static func getCondominioForToken(token: String, completion:@escaping (_ isValid: String?)->Void) {
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/condominios/validaToken.php?token=\(token)")
+            let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                guard let data = data else {
+                    print("Impossible to get the data from the server. Requisition: \(String(describing: url?.absoluteString))")
+                    completion(nil)
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    let condCodArray = try decoder.decode([[String:String]].self, from: data)
+                    guard let condCod = condCodArray.first?.first?.value else {
+                        print("Impossible to get the value from the condCodArray")
+                        completion(nil)
+                        return
+                    }
+                    completion(condCod)
+                } catch let error {
+                    print(error.localizedDescription)
+                    completion(nil)
+                }
+                
+            }
+            task.resume()
+        }
+    }
     
     class CredencialManager {
         
@@ -248,8 +274,6 @@ class DataBase {
             task.resume()
         }
     }
-    
-    
     
     class ListaEventoManager {
         
