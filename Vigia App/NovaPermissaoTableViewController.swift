@@ -240,8 +240,6 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
     
     @IBAction func salvarTapped(_ sender: Any) {
         
-        print("salvar tapped")
-        
         let alert = UIAlertController(title: nil, message: "Salvando...", preferredStyle: .alert)
         
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))

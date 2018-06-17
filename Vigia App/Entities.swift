@@ -130,6 +130,7 @@ struct Evento: Decodable, Encodable {
             }
         }
     }
+
 }
 
 struct Permissao: Decodable, Encodable {

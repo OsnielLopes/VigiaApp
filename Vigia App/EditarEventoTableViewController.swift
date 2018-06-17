@@ -41,10 +41,10 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate, Ev
     }()
     
     //MARK: - View Life Cycle
-
+    
     override func viewWillAppear(_ animated: Bool) {
         if evento != nil {
-            DataBase.ListaEventoManager.getConvidados(to: evento!.id) { (convidados) in
+            DataBase.ListaEventoManager.getConvidados(to: evento!.id!) { (convidados) in
                 if convidados != nil {
                     self.convidados = convidados
                     self.cells[self.cells.count-1].insert(contentsOf: Array(repeating: EditarEventoTableViewCellType.convidado, count: convidados!.count), at: 0)
@@ -118,7 +118,7 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate, Ev
             }
             newCell.delegate = self
             if evento != nil {
-                 newCell.nomeDoEvento.text = evento?.nome
+                newCell.nomeDoEvento.text = evento?.nome
             } else {
                 
                 
@@ -163,7 +163,7 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate, Ev
                 newCell.detailTextLabel?.text = String((evento?.horaFim[...endIndex])!)
             }
             cell = newCell
-        
+            
         case .convidado:
             guard let newCell = tableView.dequeueReusableCell(withIdentifier: cellType.rawValue, for: indexPath) as? ConvidadoTableViewCell else {
                 fatalError("Impossible to dequeue the cell as \(cellType.rawValue)")
@@ -228,12 +228,12 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate, Ev
         } else if cellType == .convidado {
             tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
         }
-
+        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == cells.count - 1 && indexPath.row != cells[cells.count - 1].count-1 /*|| indexPath.row == 0 && cells[cells.count - 1].count != 2*/ {
-                return true
+            return true
         }
         return false
     }
@@ -273,13 +273,108 @@ class EditarEventoTableViewController: UITableViewController, PickerDelegate, Ev
     }
     
     @IBAction func salvarTapped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: nil, message: "Salvando...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = .gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
         if evento != nil {
             
         } else {
-           //DataBase.ListaEventoManager.create(json: <#T##[String : Any]#>, completion: <#T##(Bool) -> Void#>)
+            var nome: String!
+            var data: String!
+            var inicio: String!
+            var fim: String!
+            for i in 0..<cells.count {
+                for j in 0..<cells[i].count {
+                    switch cells[i][j] {
+                    case .nomeEvento:
+                        let indexPath = IndexPath(row: j, section: i)
+                        guard let cell = tableView.cellForRow(at: indexPath) as? NomeDoEventoTableViewCell else {
+                            fatalError("Impossible to downgrade the cell to a NomeDoEventoTableViewCell")
+                        }
+                        nome = cell.nomeDoEvento.text
+                    case .dataEntrada:
+                        let indexPath = IndexPath(row: j, section: i)
+                        let cell = tableView.cellForRow(at: indexPath)
+                        data = cell?.detailTextLabel?.text
+                    case .horaEntrada:
+                        let indexPath = IndexPath(row: j, section: i)
+                        let cell = tableView.cellForRow(at: indexPath)
+                        inicio = cell?.detailTextLabel?.text
+                    case .horaSaida:
+                        let indexPath = IndexPath(row: j, section: i)
+                        let cell = tableView.cellForRow(at: indexPath)
+                        fim = cell?.detailTextLabel?.text
+                    default: break
+                    }
+                }
+            }
+            
+            DataBase.MoradorManager.getUnidade(for: UserDefaults.standard.integer(forKey: "user_pessoas_id")) { (id) in
+                DataBase.ListaEventoManager.create(nome: nome, unidadeid: id!, date: data, inicio: inicio, fim: fim, salvopor: UserDefaults.standard.integer(forKey: "user_credencial_id"), completion: { (didSave) in
+                    //TODO: Salvar os convidados de uma festa
+                    if didSave {
+//                        for i in 0..<self.cells[self.cells.count-1].count-1{
+//                            let indexPath = IndexPath(row: i, section: self.cells.count-1)
+//                            guard let cell = self.tableView.cellForRow(at: indexPath) as? ConvidadoTableViewCell else {
+//                                fatalError("Impossible to downgrade a TableViewCell to ConvidadeTableViewcell")
+//                            }
+//                            let dateFormatter = DateFormatter()
+//                            dateFormatter.dateFormat = "dd/MM/yyyy"
+//                            let datePlaceholder = dateFormatter.date(from: data)
+//                            dateFormatter.dateFormat = "yyyy-MM-dd"
+//                            let inicioLiberacao = dateFormatter.string(from: datePlaceholder)
+//                            if !((cell.nome.text?.isEmpty)!) && !((cell.rg.text?.isEmpty)!) {
+//                                let json: [String: Any] = ["nome": cell.nome.text,
+//                                                           "sobrenome": "",
+//                                                           "rg": cell.rg.text,
+//                                                           "inicioliberacao": "\(inicioLiberacao) 10:00:00",
+//                                    "fimliberacao": "\(inicioLiberacao) 10:00:00",
+//                                    "diasliberacao": self.getDiasLiberacao(),
+//                                    "horainicio": horarioInicio,
+//                                    "horafim": horarioFim,
+//                                    "unidades_id": id!,
+//                                    "bases_id": String(UserDefaults().integer(forKey: "user_bases_id")),
+//                                    "salvopor": UserDefaults().integer(forKey: "user_credencial_id"),
+//                                    "auth": 0
+//                                ]
+//                                DataBase.PermissaoManager.create(json: json, completion: { (didSave) in
+//                                    DispatchQueue.main.async {
+//                                        alert.dismiss(animated: true, completion: {
+//                                            if didSave {
+//                                                if let delegate = self.delegate {
+//                                                    delegate.didUpdatePermissao()
+//                                                }
+//                                                self.dismiss(animated: true, completion: nil)
+//                                            } else {
+//                                                let alert = UIAlertController(title: "Atenção", message: "Não foi possível salvar essa permissão.", preferredStyle: .alert)
+//                                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                                                self.present(alert, animated: true)
+//                                            }
+//                                        })
+//                                    }
+//
+//                                })
+//                            }
+//                        }
+                    }
+                    DispatchQueue.main.async {
+                        alert.dismiss(animated: true, completion: {
+                            if didSave {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        })
+                    }
+                })
+            }
         }
-        
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelarTapped(_ sender: Any) {

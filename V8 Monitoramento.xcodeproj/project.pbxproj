@@ -190,13 +190,13 @@
 			isa = PBXGroup;
 			children = (
 				65F7B20620D6403700B9BFC2 /* Cadastro */,
-				4919CCC220C9A9E1003FC461 /* HistoricoDeAcionamento */,
 				49EC456F2099FE670071B045 /* Condominios */,
 				499501A3209685FB00F7A975 /* Contato */,
-				4995019C20960C4400F7A975 /* Permissao */,
-				4961B5B620955E63000509A9 /* Login */,
-				4918BC452095529500CB8257 /* Lista de Festa */,
+				4919CCC220C9A9E1003FC461 /* HistoricoDeAcionamento */,
 				49BE63AF209540A100B99686 /* Home */,
+				4918BC452095529500CB8257 /* Lista de Festa */,
+				4961B5B620955E63000509A9 /* Login */,
+				4995019C20960C4400F7A975 /* Permissao */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

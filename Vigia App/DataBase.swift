@@ -253,31 +253,25 @@ class DataBase {
     
     class ListaEventoManager {
         
-        static func create(json: [String:Any], completion: @escaping (_ saved: Bool)->Void) {
-            
-            //nome, rg, inicioliberacao, fimliberacao, diasliberacao, horainicio, horafim, unidades_id, bases_id, salvopor
-            
-            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .sortedKeys)
-            print(String(data: jsonData!, encoding: .utf8))
-            // create post request
-            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/listafesta/createEvent.php")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            print("INICIOU TASK URL")
-            
-            let task = URLSession.shared.uploadTask(with: request, from: jsonData) { data, response, error in
-                print("TASK URL EXECUTANDO")
-                
+        static func create(nome: String, unidadeid: Int, date: String, inicio: String, fim: String, salvopor: Int, completion: @escaping (_ saved: Bool)->Void) {
+        
+            let address = "http://plataforma.v8monitoramento.com.br/api/listafesta/createEvent.php"
+            let inicioAttribute = "\(inicio):00"
+            let fimAttribute = "\(fim):00"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let datePlaceholder = dateFormatter.date(from: date)
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateAttribute = dateFormatter.string(from: datePlaceholder!)
+            var attributes = "?nome=\(nome)&unidadeid=\(unidadeid)&data=\(dateAttribute)&inicio=\(inicioAttribute)&fim=\(fimAttribute)&salvopor=\(salvopor)"
+            attributes = attributes.replacingOccurrences(of: " ", with: "%20")
+            let urlString = address+attributes
+            let url = URL(string: urlString)
+            let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard let data = data, error == nil else {
-                    
                     print(error?.localizedDescription ?? "No data")
                     return
                 }
-                
-                print(String(data: data, encoding: .utf8))
-                
                 let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let responseJSON = responseJSON as? [String: Any] {
                     print(responseJSON)
@@ -330,6 +324,31 @@ class DataBase {
                     DispatchQueue.main.async {
                         completion(nil)
                     }
+                }
+            }
+            
+            task.resume()
+        }
+        
+        static func insertConvidado(into festaId: Int, convidado pessoasId: Int,  completion: @escaping (_ didSave: Bool)->Void) {
+            
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/listafesta/updateVisitanteFesta.php?listafestaid=\(festaId)&pessoaid=\(pessoasId)")
+            let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+                
+                guard let data = data else {
+                    print("Impossible to get the data from the server. Requisition: \(String(describing: url?.absoluteString))")
+                    return
+                }
+                guard let response = String(data: data, encoding: .utf8) else {
+                    print("Impossible to convert the data to String")
+                    completion(false)
+                    return
+                }
+                if response == "1"{
+                    completion(true)
+                } else {
+                    print(response)
+                    completion(false)
                 }
             }
             
