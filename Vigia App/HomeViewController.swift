@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         self.view.window!.rootViewController = storyboard.instantiateViewController(withIdentifier: "loginNavigationController")
     }
+    
     func setupMenu() {
         
         let nivelAcesso = UserDefaults().integer(forKey: "nivel_acesso")

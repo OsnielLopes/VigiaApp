@@ -86,7 +86,7 @@ struct Condominio {
     var basesid: [Int]
 }
 
-struct Evento: Decodable {
+struct Evento: Decodable, Encodable {
     var id: Int!
     var nome: String!
     var data: Date!
@@ -142,10 +142,9 @@ struct Permissao: Decodable, Encodable {
     var horaFim: String!
     var pessoasId: Int!
     var unidadesId: Int!
-    var salvoEm: Date!
-    var salvoPor: Int!
-    var ativo: Bool!
     var nome: String?
+    var sobrenome: String?
+    var apelido: String?
     var rg: String?
     
     enum CodingKeys: String, CodingKey {
@@ -157,14 +156,21 @@ struct Permissao: Decodable, Encodable {
         case horaFim = "HORAFIM"
         case pessoasId = "PESSOAS_ID"
         case unidadesId = "UNIDADES_ID"
-        case salvoEm = "SALVOEM"
-        case salvoPor = "SALVOPOR"
-        case ativo = "ATIVO"
+        case nome = "NOME"
+        case sobrenome = "SOBRENOME"
+        case apelido = "APELIDO"
+        case rg = "RG"
     }
     
     init(from decoder: Decoder) {
+        let values: KeyedDecodingContainer<Permissao.CodingKeys>!
         do {
-            let values = try decoder.container(keyedBy: CodingKeys.self)
+            values = try decoder.container(keyedBy: CodingKeys.self)
+        } catch let error {
+            print(error.localizedDescription)
+            fatalError("Impossible to create a container")
+        }
+        do {
             permissao = try Int(values.decode(String.self, forKey: .permissao))
             inicioLiberacao = try values.decode(Date.self, forKey: .inicioLiberacao)
             fimLiberacao = try values.decode(Date.self, forKey: .fimLiberacao)
@@ -173,9 +179,9 @@ struct Permissao: Decodable, Encodable {
             horaFim = try values.decode(String.self, forKey: .horaFim)
             pessoasId = try Int(values.decode(String.self, forKey: .pessoasId))
             unidadesId = try Int(values.decode(String.self, forKey: .unidadesId))
-            salvoEm = try values.decode(Date.self, forKey: .salvoEm)
-            salvoPor = try Int(values.decode(String.self, forKey: .salvoPor))
-            ativo = try Bool(values.decode(String.self, forKey: .ativo))
+            nome = try values.decode(String.self, forKey: .nome)
+            sobrenome = try values.decode(String.self, forKey: .sobrenome)
+            rg = try values.decode(String.self, forKey: .rg)
         } catch let error {
             print(error.localizedDescription)
             if let error = error as? DecodingError{
@@ -183,7 +189,26 @@ struct Permissao: Decodable, Encodable {
                     
                 case .typeMismatch( _, let y):
                     print(y.debugDescription)
-                case .valueNotFound(_, let y):
+                case .valueNotFound( _, let y):
+                    print(y.debugDescription)
+                case .keyNotFound(let x, let y):
+                    print(x.debugDescription)
+                    print(y.debugDescription)
+                case .dataCorrupted(let x):
+                    print(x.debugDescription)
+                }
+            }
+        }
+        do {
+            apelido = try values.decode(String.self, forKey: .apelido)
+        } catch let error {
+            if let error = error as? DecodingError{
+                switch error {
+
+                case .typeMismatch( _, let y):
+                    print(y.debugDescription)
+                case .valueNotFound( _, let y):
+                    apelido = nil
                     print(y.debugDescription)
                 case .keyNotFound(let x, let y):
                     print(x.debugDescription)
@@ -207,7 +232,7 @@ struct Permissao: Decodable, Encodable {
     }
 }
 
-struct Convidado: Decodable {
+struct Convidado: Decodable, Encodable {
     var nome: String!
     var rg: String!
     

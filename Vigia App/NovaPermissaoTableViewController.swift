@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol NovaPermissaoDelegate {
+    func didUpdatePermissao()
+}
+
 class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelegate {
     
     //MARK: - Variables
     var permissao: Permissao!
+    var delegate: NovaPermissaoDelegate?
     
     //MARK: - IBOutlets
     @IBOutlet weak var nomeTextField: UITextField!
+    @IBOutlet weak var sobrenomeTextField: UITextField!
     @IBOutlet weak var rgTextField: UITextField!
     @IBOutlet weak var entradaDatePicker: UIDatePicker!
     @IBOutlet weak var dataEntradaCell: UITableViewCell!
@@ -30,8 +36,8 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
         
         nomeTextField.delegate = self
         nomeTextField.tag = 0
-        rgTextField.delegate = self
-        rgTextField.tag = 1
+        sobrenomeTextField.delegate = self
+        sobrenomeTextField.tag = 1
         
         entradaDatePicker.isHidden = true
         entradaDatePicker.minimumDate = Date()
@@ -55,18 +61,9 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
             return
         }
         
-        DataBase.PessoaManager.getNome(pessoaId: permissao.pessoasId) { (nome) in
-            DispatchQueue.main.async {
-                self.nomeTextField.text = nome
-            }
-        }
-        
-        DataBase.PessoaManager.getRG(pessoaId: permissao.pessoasId) { (rg) in
-            DispatchQueue.main.async {
-                self.rgTextField.text = rg
-            }
-        }
-        
+        self.nomeTextField.text = permissao.nome
+        self.sobrenomeTextField.text = permissao.sobrenome
+        self.rgTextField.text = permissao.rg
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -101,7 +98,7 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 2
+            return 3
         } else if section == 1 {
             return 8
         } else if section == 2 {
@@ -259,15 +256,17 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
             return
         }
         
-        guard let rg = self.rgTextField.text else {
+        guard let sobrenome = self.sobrenomeTextField.text else {
             return
         }
         
-        guard let horarioInicio = self.horaEntradaCell.detailTextLabel?.text else {
+        guard let rg = self.rgTextField.text else { return }
+        
+        guard var horarioInicio = self.horaEntradaCell.detailTextLabel?.text else {
             return
         }
         
-        guard let horarioFim = self.horaSaidaCell.detailTextLabel?.text else {
+        guard var horarioFim = self.horaSaidaCell.detailTextLabel?.text else {
             return
         }
         
@@ -278,7 +277,7 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         
-        DataBase.MoradorManager.getUnidade(for: UserDefaults().integer(forKey: "user_credencial_id"), completion: { id in
+        DataBase.MoradorManager.getUnidade(for: UserDefaults().integer(forKey: "user_pessoas_id"), completion: { id in
             
             if id != nil {
                 
@@ -296,21 +295,29 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
                 let date2 = dateFormatter.date(from: (self.dataSaidaCell.detailTextLabel?.text!)!)
                 let fimLiberacao = formatter.string(from: date2!)
                 
+                horarioInicio = horarioInicio.count == 8 ? horarioInicio : "\(horarioInicio):00"
+                horarioFim = horarioFim.count == 8 ? horarioFim : "\(horarioFim):00"
+                
                 let json: [String: Any] = ["nome": nome,
+                                           "sobrenome": sobrenome,
                                            "rg": rg,
                                            "inicioliberacao": "\(inicioLiberacao) 10:00:00",
                     "fimliberacao": "\(fimLiberacao) 10:00:00",
                     "diasliberacao": self.getDiasLiberacao(),
-                    "horainicio": "\(horarioInicio):00",
-                    "horafim":"\(horarioFim):00",
+                    "horainicio": horarioInicio,
+                    "horafim": horarioFim,
                     "unidades_id": id!,
                     "bases_id": String(UserDefaults().integer(forKey: "user_bases_id")),
-                    "salvopor": UserDefaults().integer(forKey: "user_credencial_id")
+                    "salvopor": UserDefaults().integer(forKey: "user_credencial_id"),
+                    "auth": 0
                 ]
                 DataBase.PermissaoManager.create(json: json, completion: { (didSave) in
                     DispatchQueue.main.async {
                         alert.dismiss(animated: true, completion: {
                             if didSave {
+                                if let delegate = self.delegate {
+                                    delegate.didUpdatePermissao()
+                                }
                                 self.dismiss(animated: true, completion: nil)
                             } else {
                                 let alert = UIAlertController(title: "Atenção", message: "Não foi possível salvar essa permissão.", preferredStyle: .alert)
@@ -378,9 +385,9 @@ class NovaPermissaoTableViewController: UITableViewController, UITextFieldDelega
     //MARK: - TextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 0 {
-            rgTextField.becomeFirstResponder()
+            sobrenomeTextField.becomeFirstResponder()
         } else {
-            rgTextField.resignFirstResponder()
+            sobrenomeTextField.resignFirstResponder()
         }
         return false
     }

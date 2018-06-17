@@ -57,7 +57,7 @@ class DataBase {
     class PermissaoManager {
         
         static func get(usuarioId: Int, completion: @escaping (_ permissoes: [Permissao])->Void) {
-            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/permissoes/read.php?salvopor=\(usuarioId)")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/permissoes/readPermissaoBySalvoPor.php?salvopor=\(usuarioId)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
@@ -287,8 +287,8 @@ class DataBase {
             task.resume()
         }
         
-        static func get(salvopor: Int, completion: @escaping (_ festas: [Evento])->Void){
-            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/listafesta/read.php?salvopor=\(salvopor)")
+        static func get(salvopor: Int, unidade: Int, completion: @escaping (_ festas: [Evento]?)->Void){
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/listafesta/readEvent.php?salvopor=\(salvopor)&unidade=\(unidade)")
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
                 guard let data = data else {
@@ -305,6 +305,7 @@ class DataBase {
                     
                 } catch let error {
                     print(error)
+                    completion(nil)
                 }
             }
             
@@ -338,7 +339,7 @@ class DataBase {
     
     class MoradorManager {
         static func getUnidade(for pessoas_id: Int, completion: @escaping (_ unidade_id: Int?)->Void){
-            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/morador/read.php?atributo=UNIDADES_ID&pessoas_id=\(pessoas_id)")
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/morador/getUnidadeByPessoasId.php?pessoasid=\(pessoas_id)")
         
             let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
                 
@@ -360,6 +361,9 @@ class DataBase {
                     }
                 } catch let error {
                     print(error)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                 }
             }
             task.resume()
