@@ -1971,7 +1971,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNk-ha-8Wz">
-                                        <rect key="frame" x="23.5" y="540" width="329" height="40"/>
+                                        <rect key="frame" x="23" y="540" width="329" height="40"/>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.32156862749999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="qds-92-0LD"/>
@@ -1984,7 +1984,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JmU-cO-gd0">
-                                        <rect key="frame" x="23.5" y="190" width="329" height="340"/>
+                                        <rect key="frame" x="23" y="190" width="329" height="340"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25r-Zq-oDB">
                                                 <rect key="frame" x="0.0" y="0.0" width="329" height="40"/>
@@ -2048,17 +2048,37 @@
                                             <constraint firstItem="jrh-bi-KM1" firstAttribute="width" secondItem="25r-Zq-oDB" secondAttribute="width" id="su9-Kp-Dl5"/>
                                         </constraints>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Permissao MAin" translatesAutoresizingMaskIntoConstraints="NO" id="Uop-K3-d5A">
-                                        <rect key="frame" x="113" y="20" width="150" height="150"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Permissao MAin" translatesAutoresizingMaskIntoConstraints="NO" id="Uop-K3-d5A">
+                                        <rect key="frame" x="112.5" y="20" width="150" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Uop-K3-d5A" secondAttribute="height" multiplier="1:1" id="cZ3-MA-FiW"/>
                                             <constraint firstAttribute="width" constant="150" id="wLr-SC-aSn"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E5q-nK-5bW">
+                                        <rect key="frame" x="112.5" y="20" width="150" height="150"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="add photo">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.17254901959999999" green="0.32156862749999998" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="40" name=".SFNSDisplay"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="addPhotoBtnPressed:" destination="O3f-li-Ahc" eventType="touchUpInside" id="COQ-CW-mUe"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="E5q-nK-5bW" firstAttribute="width" secondItem="Uop-K3-d5A" secondAttribute="width" id="3Nj-JW-kjv"/>
                                     <constraint firstItem="JmU-cO-gd0" firstAttribute="leading" secondItem="RNk-ha-8Wz" secondAttribute="leading" id="7NG-gh-2fk"/>
+                                    <constraint firstItem="E5q-nK-5bW" firstAttribute="height" secondItem="Uop-K3-d5A" secondAttribute="height" id="GHQ-jR-dts"/>
                                     <constraint firstItem="RNk-ha-8Wz" firstAttribute="width" secondItem="Eeq-Qe-3bW" secondAttribute="width" id="JSm-hP-i8u"/>
+                                    <constraint firstItem="E5q-nK-5bW" firstAttribute="centerY" secondItem="Uop-K3-d5A" secondAttribute="centerY" id="M6r-B1-2TG"/>
                                     <constraint firstItem="Uop-K3-d5A" firstAttribute="centerX" secondItem="RNk-ha-8Wz" secondAttribute="centerX" id="NmI-qj-07s"/>
                                     <constraint firstItem="JmU-cO-gd0" firstAttribute="leading" secondItem="V41-v9-fBM" secondAttribute="leading" constant="23" id="X67-Jt-A2J"/>
                                     <constraint firstItem="Uop-K3-d5A" firstAttribute="top" secondItem="V41-v9-fBM" secondAttribute="top" constant="20" id="aZE-cW-RV6"/>
@@ -2066,6 +2086,7 @@
                                     <constraint firstAttribute="bottom" secondItem="RNk-ha-8Wz" secondAttribute="bottom" constant="20" id="fci-yf-2YD"/>
                                     <constraint firstItem="JmU-cO-gd0" firstAttribute="top" secondItem="Uop-K3-d5A" secondAttribute="bottom" constant="20" id="gfx-Op-zKn"/>
                                     <constraint firstItem="RNk-ha-8Wz" firstAttribute="top" secondItem="JmU-cO-gd0" secondAttribute="bottom" constant="10" id="hNe-SG-fwZ"/>
+                                    <constraint firstItem="E5q-nK-5bW" firstAttribute="centerX" secondItem="Uop-K3-d5A" secondAttribute="centerX" id="m1P-d4-ffJ"/>
                                     <constraint firstItem="JmU-cO-gd0" firstAttribute="width" secondItem="V41-v9-fBM" secondAttribute="width" constant="-46" id="yEH-gr-In3"/>
                                 </constraints>
                             </scrollView>
@@ -2082,6 +2103,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cadastro" leftItemsSupplementBackButton="YES" id="b6H-Db-9T8"/>
                     <connections>
+                        <outlet property="addPhotoBtn" destination="E5q-nK-5bW" id="A8k-Mk-Zx2"/>
                         <outlet property="cadastrarBtn" destination="RNk-ha-8Wz" id="yMn-9j-OSC"/>
                         <outlet property="cpfTextField" destination="x2W-jS-Fr1" id="RPw-hp-YvH"/>
                         <outlet property="dataNascTextField" destination="qlV-4o-zLh" id="hyT-m1-6Sg"/>

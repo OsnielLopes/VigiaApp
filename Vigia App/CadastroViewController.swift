@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CadastroViewController: UIViewController, UITextFieldDelegate {
+class CadastroViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
@@ -20,9 +20,14 @@ class CadastroViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var telefone2TextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var cadastrarBtn: UIButton!
+    @IBOutlet weak var addPhotoBtn: UIButton!
+    
+    let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        picker.delegate = self
         
         cadastrarBtn.layer.cornerRadius = 20
         
@@ -71,7 +76,22 @@ class CadastroViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func cameraBtnPressed(_ sender: Any) {
+    @IBAction func addPhotoBtnPressed(_ sender: Any) {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
+            self.shootPhoto()
+        }
+        
+        let libraryAction = UIAlertAction(title: "Biblioteca", style: .default) { (action) in
+            self.photoFromLibrary()
+        }
+        
+        alert.addAction(cameraAction)
+        alert.addAction(libraryAction)
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
         
     }
     
@@ -112,6 +132,46 @@ class CadastroViewController: UIViewController, UITextFieldDelegate {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustInsetForKeyboardShow(false, notification: notification)
+    }
+    
+    func photoFromLibrary() {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) {
+            picker.mediaTypes = mediaTypes
+            present(picker, animated: true, completion: nil)
+        }
+    }
+    
+    func shootPhoto() {
+        picker.allowsEditing = false
+        picker.sourceType = .camera
+        if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) {
+            picker.mediaTypes = mediaTypes
+            present(picker, animated: true, completion: nil)
+        }
+        
+    }
+    
+    //MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        guard let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            print("Erro. Não conseguiu ler a image")
+            dismiss(animated:true, completion: nil)
+            return
+        }
+        
+        imageView.image = chosenImage
+        imageView.alpha = 1
+        addPhotoBtn.isHidden = true
+        dismiss(animated:true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated:true, completion: nil)
+        print("Usuário cancelou")
     }
     
 }
