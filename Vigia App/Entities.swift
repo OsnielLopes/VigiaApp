@@ -243,3 +243,34 @@ struct Convidado: Decodable, Encodable {
     }
 }
 
+struct Unidade: Decodable {
+    var unidade: String!
+    var bloco: String!
+    
+    enum CodingKeys: String, CodingKey {
+        case unidade = "UNIDADE"
+        case bloco = "BLOCO"
+    }
+    
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            self.unidade = try values.decode(String.self, forKey: .unidade)
+            self.bloco = try values.decode(String.self, forKey: .bloco)
+        } catch let error {
+            if let error = error as? DecodingError{
+                switch error {
+                case .typeMismatch( _, let y):
+                    print(y.debugDescription)
+                case .valueNotFound( _, let y):
+                    print(y.debugDescription)
+                case .keyNotFound(let x, let y):
+                    print(x.debugDescription)
+                    print(y.debugDescription)
+                case .dataCorrupted(let x):
+                    print(x.debugDescription)
+                }
+            }
+        }
+    }
+}

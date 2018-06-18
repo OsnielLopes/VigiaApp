@@ -185,6 +185,37 @@ class DataBase {
             }
         }
         
+        static func createMorador(with json: [String:Any], completion: @escaping (_ saved: Bool?)->Void){
+            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .sortedKeys)
+            print(String(data: jsonData!, encoding: .utf8))
+            // create post request
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/morador/create.php")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            print("INICIOU TASK URL")
+            
+            let task = URLSession.shared.uploadTask(with: request, from: jsonData) { data, response, error in
+                print("TASK URL EXECUTANDO")
+                
+                guard let data = data, error == nil else {
+                    
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                
+                print(String(data: data, encoding: .utf8))
+                
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                    print(responseJSON)
+                }
+                completion(true)
+            }
+            task.resume()
+        }
+        
     }
     
     class PessoaManager {
@@ -401,6 +432,34 @@ class DataBase {
                     let id = Int((idDictionary.popFirst()?.value)!)
                     DispatchQueue.main.async {
                         completion(id)
+                    }
+                } catch let error {
+                    print(error)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                }
+            }
+            task.resume()
+            
+        }
+    }
+    
+    class UnidadeManager {
+        static func getUnidades(for condCod: String, completion: @escaping (_ unidades: [Unidade]?)->Void){
+            let url = URL(string: "http://plataforma.v8monitoramento.com.br/api/unidades/getUnidadesForCond.php?condCod=\(condCod)")
+            
+            let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+                
+                guard let data = data else {
+                    print("Impossible to get the data from the server. Requisition: \(String(describing: url?.absoluteString))")
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    let unidades = try decoder.decode([Unidade].self, from: data)
+                    DispatchQueue.main.async {
+                        completion(unidades)
                     }
                 } catch let error {
                     print(error)
